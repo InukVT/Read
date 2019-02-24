@@ -1,6 +1,0 @@
-framework module FolioReaderKit {
-  umbrella header "FolioReaderKit-umbrella.h"
-
-  export *
-  module * { export * }
-}
