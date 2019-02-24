@@ -25,6 +25,7 @@ class DocumentViewController: UIViewController {
               //  self.documentNameLabel.text = self.document?.fileURL.lastPathComponent
                 let config = FolioReaderConfig()
                 let bookPath = (self.document?.fileURL)!
+                bookPath = bookPath.path
                 print(bookPath)
                 let folioReader = FolioReader()
                 folioReader.presentReader(parentViewController: self, withEpubPath: "\(bookPath)", andConfig: config)
