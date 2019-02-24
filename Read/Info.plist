@@ -7,17 +7,19 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
-			<key>CFBundleTypeIconFiles</key>
-			<array/>
+			<key>CFBundleTypeIconFile</key>
+			<string>iBooksBookIcon</string>
 			<key>CFBundleTypeName</key>
-			<string>Images</string>
+			<string>Electronic Publication (EPUB)</string>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>LSHandlerRank</key>
-			<string>Alternate</string>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>public.image</string>
+				<string>org.idpf.epub-container</string>
+				<string>org.idpf.epub-folder</string>
+				<string>com.apple.ibooks.epub</string>
 			</array>
 		</dict>
 	</array>
