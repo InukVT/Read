@@ -16,12 +16,12 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
         
         delegate = self
         
-        allowsDocumentCreation = true
+        allowsDocumentCreation = false
         allowsPickingMultipleItems = false
         
         // Update the style of the UIDocumentBrowserViewController
-        // browserUserInterfaceStyle = .dark
-        // view.tintColor = .white
+        browserUserInterfaceStyle = .dark
+        view.tintColor = .orange
         
         // Specify the allowed content types of your application via the Info.plist.
         
