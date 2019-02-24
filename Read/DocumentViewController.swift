@@ -17,7 +17,8 @@ class DocumentViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+       
+
         // Access the document
         document?.open(completionHandler: { (success) in
             if success {
@@ -25,20 +26,25 @@ class DocumentViewController: UIViewController {
               //  self.documentNameLabel.text = self.document?.fileURL.lastPathComponent
                 let config = FolioReaderConfig()
                 let bookURL = (self.document?.fileURL)!
-                let bookPath = bookPath.path
-                print(bookPath)
+                let bookPath = bookURL.path
                 let folioReader = FolioReader()
+                
                 folioReader.presentReader(parentViewController: self, withEpubPath: "\(bookPath)", andConfig: config)
+                self.document?.close(completionHandler: nil)
             } else {
-                // Make sure to handle the failed import appropriately, e.g., by presenting an error message to the user.
+                self.dismissDocumentViewController()
             }
         })
     }
-    
-    @IBAction func dismissDocumentViewController() {
+    func dismissDocumentViewController() {
         dismiss(animated: true) {
             self.document?.close(completionHandler: nil)
         }
     }
+/*    @IBAction func dismissDocumentViewController() {
+        dismiss(animated: true) {
+            self.document?.close(completionHandler: nil)
+        }
+    }*/
 }
 
