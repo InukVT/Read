@@ -1,0 +1,12 @@
+ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/AEXML" "${PODS_CONFIGURATION_BUILD_DIR}/FolioReaderKit" "${PODS_CONFIGURATION_BUILD_DIR}/FontBlaster" "${PODS_CONFIGURATION_BUILD_DIR}/MenuItemKit" "${PODS_CONFIGURATION_BUILD_DIR}/Realm" "${PODS_CONFIGURATION_BUILD_DIR}/RealmSwift" "${PODS_CONFIGURATION_BUILD_DIR}/SSZipArchive" "${PODS_CONFIGURATION_BUILD_DIR}/ZFDragableModalTransition"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/AEXML/AEXML.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/FolioReaderKit/FolioReaderKit.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/FontBlaster/FontBlaster.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/MenuItemKit/MenuItemKit.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/Realm/Realm.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/RealmSwift/RealmSwift.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SSZipArchive/SSZipArchive.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/ZFDragableModalTransition/ZFDragableModalTransition.framework/Headers"
+LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
+LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Realm/core"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"c++" -l"z" -framework "AEXML" -framework "FolioReaderKit" -framework "FontBlaster" -framework "MenuItemKit" -framework "Realm" -framework "RealmSwift" -framework "SSZipArchive" -framework "Security" -framework "UIKit" -framework "ZFDragableModalTransition"
+OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS
+PODS_BUILD_DIR = ${BUILD_DIR}
+PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
+PODS_ROOT = ${SRCROOT}/Pods
