@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FolioReaderKit
 
 
 class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocumentBrowserViewControllerDelegate {
@@ -65,22 +64,12 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
     
     func presentDocument(at documentURL: URL) {
         
-        //let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        //let documentViewController = /*storyBoard.instantiateViewController(withIdentifier: "DocumentViewController") as! */DocumentViewController()
         let document = Document(fileURL: documentURL)
         
-        //present(documentViewController, animated: true, completion: nil)
         document.open(completionHandler: { (success) in
             if success {
-                // Display the content of the document, e.g.:
-                //  self.documentNameLabel.text = self.document?.fileURL.lastPathComponent
-                let config = FolioReaderConfig()
-                config.tintColor = .orange
-                let bookURL = (document.fileURL)
-                let bookPath = bookURL.path
-                let folioReader = FolioReader()
-                
-                folioReader.presentReader(parentViewController: self, withEpubPath: "\(bookPath)", andConfig: config)
+                let documentUI = DocumentViewController()
+                documentUI.document = document
             } else {
                 
             }

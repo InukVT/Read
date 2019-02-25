@@ -63,8 +63,6 @@
 	<key>UISupportsDocumentBrowser</key>
 	<true/>
 	<key>UTImportedTypeDeclarations</key>
-	<array>
-		<dict/>
-	</array>
+	<array/>
 </dict>
 </plist>
