@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Gzip
 
 class DocumentViewController: UIViewController {
     
@@ -18,7 +17,8 @@ class DocumentViewController: UIViewController {
         // Access the document
         document?.open(completionHandler: { (success) in
             if success {
-
+                let book = ePub(self.document as! Document)
+                print(book.package)
             } else {
             }
         })

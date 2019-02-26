@@ -68,8 +68,11 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
         
         document.open(completionHandler: { (success) in
             if success {
+                print(documentURL)
                 let documentUI = DocumentViewController()
                 documentUI.document = document
+                let book = ePub(document)
+                print(book.package ?? "No package provided")
             } else {
                 
             }

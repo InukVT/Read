@@ -2,12 +2,12 @@
   "object": {
     "pins": [
       {
-        "package": "Gzip",
-        "repositoryURL": "https://github.com/1024jp/GzipSwift.git",
+        "package": "ZIPFoundation",
+        "repositoryURL": "https://github.com/weichsel/ZIPFoundation/",
         "state": {
           "branch": null,
-          "revision": "eac1da34ec837f501b56d810bdf0fd68b3f91e19",
-          "version": "4.1.0"
+          "revision": "d9bb1c47984baa035e3960338551d9b0b7128e79",
+          "version": "0.9.8"
         }
       }
     ]
