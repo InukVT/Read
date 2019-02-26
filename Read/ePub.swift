@@ -5,7 +5,7 @@
 //  Created by Bastian Inuk Christensen on 25/02/2019.
 //  Copyright © 2019 Bastian Inuk Christensen. All rights reserved.
 //
-import UIKit
+import Foundation
 
 struct ePub {
   //  let title: String
@@ -21,13 +21,11 @@ struct ePub {
         var archiveURL = currentWorkingPath!
             archiveURL.appendPathComponent(bookURL)
         try! fileManager.copyItem(atPath: bookPath, toPath: archiveURL.path)
-        fileManager.fileExists(atPath: archiveURL.path + "META-INF/container.xml")
-        var uncompressedBookPath: URL = archiveURL
-            uncompressedBookPath.appendPathComponent("META-INF/container.xml")
+            archiveURL.appendPathComponent("META-INF/container.xml")
+        fileManager.fileExists(atPath: archiveURL.path )
+        let uncompressedBookPath: URL = archiveURL
         let container =  try! fileManager.contents(atPath: uncompressedBookPath.path)
         let packageString = String(data: container!, encoding: .utf8)
-            self.package = packageString ?? "Failed to read the contents of the ZIP file!"
-        
-
+        self.package = packageString!
     }
 }

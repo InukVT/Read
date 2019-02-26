@@ -15,8 +15,6 @@
 		FC84C3C42222933C008F8F31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC84C3C32222933C008F8F31 /* Assets.xcassets */; };
 		FC84C3C72222933C008F8F31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC84C3C52222933C008F8F31 /* LaunchScreen.storyboard */; };
 		FC9DFA1922249D730020151B /* ePub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DFA1822249D730020151B /* ePub.swift */; };
-		FC9DFA1D22250A630020151B /* ZIPFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC9DFA1C22250A630020151B /* ZIPFoundation.framework */; };
-		FC9DFA1E22250A630020151B /* ZIPFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FC9DFA1C22250A630020151B /* ZIPFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FCF1E7E22223CCA100081532 /* ThumbnailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF1E7E12223CCA100081532 /* ThumbnailProvider.swift */; };
 		FCF1E7E62223CCA100081532 /* ReadThumbnails.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FCF1E7DF2223CCA100081532 /* ReadThumbnails.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FCF1E7EC2223CF2100081532 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC10F8262223303600BA7636 /* Document.swift */; };
@@ -33,17 +31,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		FC9DFA1F22250A640020151B /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				FC9DFA1E22250A630020151B /* ZIPFoundation.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		FCF1E7EA2223CCA100081532 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -69,7 +56,6 @@
 		FC84C3C62222933C008F8F31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC84C3C82222933C008F8F31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC9DFA1822249D730020151B /* ePub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ePub.swift; sourceTree = "<group>"; };
-		FC9DFA1C22250A630020151B /* ZIPFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZIPFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF1E7DF2223CCA100081532 /* ReadThumbnails.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ReadThumbnails.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF1E7E12223CCA100081532 /* ThumbnailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailProvider.swift; sourceTree = "<group>"; };
 		FCF1E7E32223CCA100081532 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -80,7 +66,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC9DFA1D22250A630020151B /* ZIPFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,7 +90,6 @@
 		FC84C3AC2222933A008F8F31 = {
 			isa = PBXGroup;
 			children = (
-				FC9DFA1C22250A630020151B /* ZIPFoundation.framework */,
 				FC84C3B72222933A008F8F31 /* Read */,
 				FCF1E7E02223CCA100081532 /* ReadThumbnails */,
 				FC84C3B62222933A008F8F31 /* Products */,
@@ -158,7 +142,6 @@
 				FC84C3B22222933A008F8F31 /* Frameworks */,
 				FC84C3B32222933A008F8F31 /* Resources */,
 				FCF1E7EA2223CCA100081532 /* Embed App Extensions */,
-				FC9DFA1F22250A640020151B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
