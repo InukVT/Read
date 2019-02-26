@@ -7,25 +7,40 @@
 //
 import Foundation
 
-struct ePub {
+class ePub: NSObject, XMLParserDelegate {
+    var parser: XMLParser?
+    var foundElementName: String?
+    var compressedBook: Document
   //  let title: String
     //let author: String
     //let cover: UIImage
-    var package: String
+    
     init(_ CompressedBook: Document) {
+        self.compressedBook = CompressedBook
         // Unzip (hopefully) the book into var Book
+        self.parser = nil
+        super.init()
+        self.parser = xmlGetter()
+
+        self.parser!.delegate = self
+    }
+    func parser(_ parser: XMLParser, foundAttributeDeclarationWithName attributeName: String, forElement elementName: String, type: String?, defaultValue: String?) {
+        if elementName == "rootfile" && attributeName == "full-path" {
+            print(defaultValue)
+        }
+    }
+    func xmlGetter(relativePath: String? = nil) -> XMLParser {
         let fileManager = FileManager()
-        let bookPath = CompressedBook.fileURL.path
+        let bookPath = self.compressedBook.fileURL.path
         let bookURL = URL(fileURLWithPath: bookPath).deletingPathExtension().lastPathComponent
         let currentWorkingPath = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
         var archiveURL = currentWorkingPath!
-            archiveURL.appendPathComponent(bookURL)
+        archiveURL.appendPathComponent(bookURL)
         try! fileManager.copyItem(atPath: bookPath, toPath: archiveURL.path)
-            archiveURL.appendPathComponent("META-INF/container.xml")
+        archiveURL.appendPathComponent(relativePath ?? "META-INF/container.xml")
         fileManager.fileExists(atPath: archiveURL.path )
         let uncompressedBookPath: URL = archiveURL
         let container =  try! fileManager.contents(atPath: uncompressedBookPath.path)
-        let packageString = String(data: container!, encoding: .utf8)
-        self.package = packageString!
+        return XMLParser(data: container!)
     }
 }

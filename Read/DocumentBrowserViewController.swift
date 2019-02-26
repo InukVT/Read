@@ -72,7 +72,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
                 let documentUI = DocumentViewController()
                 documentUI.document = document
                 let book = ePub(document)
-                print(book.package)//.value(forKey: "rootfile"))
+                //print(book.package)//.value(forKey: "rootfile"))
             } else {
                 
             }

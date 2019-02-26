@@ -18,7 +18,7 @@ class DocumentViewController: UIViewController {
         document?.open(completionHandler: { (success) in
             if success {
                 let book = ePub(self.document as! Document)
-                print(book.package)
+                //print(book.package)
             } else {
             }
         })
