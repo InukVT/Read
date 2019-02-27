@@ -10,14 +10,15 @@ import UIKit
 
 class DocumentViewController: UIViewController {
     
-    var document: UIDocument?
-    
+    var document: Document?
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Access the document
         document?.open(completionHandler: { (success) in
             if success {
-                let book = ePub(self.document as! Document)
+                let book = ePub(self.document!)
+                book.doXML()
                 //print(book.package)
             } else {
             }

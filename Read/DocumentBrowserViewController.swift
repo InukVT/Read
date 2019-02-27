@@ -71,7 +71,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
                 print(documentURL)
                 let documentUI = DocumentViewController()
                 documentUI.document = document
-                let book = ePub(document)
+                documentUI.viewWillAppear(true)
                 //print(book.package)//.value(forKey: "rootfile"))
             } else {
                 
