@@ -18,12 +18,12 @@ class DocumentViewController: UIViewController {
         document?.open(completionHandler: { (success) in
             if success {
                 let book = ePub(self.document!)
-                book.doXML()
-                //print(book.package)
+                if let author = book.author {
+                    print(author)
+                }
             } else {
             }
         })
     }
 
 }
-
