@@ -11,11 +11,13 @@ import UIKit
 /// Monolith ePub handler class, with _some_ metadate. This needs to be broken into smalle KISS-y classes and structs for convenience!
 class ePub: NSObject, XMLParserDelegate {
     private var parser = XMLParser()
-    private let workDir: URL
+    private let fileManager: FileManager
+    private var workDir: URL
     private var compressedBook: Document
     private var metadata: String?
     private var tag: String?
     private var rootfile: String?
+    private let bookFolder: String
     
     var title: String?
     var author: String?
@@ -24,17 +26,17 @@ class ePub: NSObject, XMLParserDelegate {
     var coverLink: String?
     
     init(_ compressedBook: Document){
-        
+        self.fileManager = FileManager()
         self.compressedBook = compressedBook
-        self.workDir = self.compressedBook.fileURL
+        let currentWorkingPath = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
+        self.workDir = currentWorkingPath!
+        
+        self.bookFolder = URL(fileURLWithPath: self.compressedBook.fileURL.path).deletingPathExtension().lastPathComponent
         super.init()
+        
         doXML()
     }
-    
-    let fileManager = FileManager()
-    
-    
-    
+
     private func doXML() {
         self.parser = xmlGetter()
         self.parser.delegate = self
@@ -66,17 +68,16 @@ class ePub: NSObject, XMLParserDelegate {
             break
         case "item":
             if attributeDict["id"] == "cover" {
-                coverLink = "OEBS/\(attributeDict["href"] ?? "cover.xhtml")"
+                coverLink = "\(attributeDict["href"] ?? "cover.xhtml")"
                 
             }
-        case "div":
-            if attributeDict["class"] == "cover_image" {
-                cover = UIImage(data: fileManager.contents(atPath: attributeDict["src"]!)!)
-                print(1)
+        case "img":
+            if attributeDict["id"] == "coverimage" {
+                let imagePath = workDir.appendingPathComponent(bookFolder).appendingPathComponent(attributeDict["src"]!).path
+                if fileManager.fileExists(atPath: imagePath) {
+                    cover = UIImage(data: fileManager.contents(atPath: imagePath)!)
+                }
             }
-        /*case "metadata":
-            self.metadata = elementName
-            break*/
         default:
             self.tag = elementName
             break
@@ -102,24 +103,26 @@ class ePub: NSObject, XMLParserDelegate {
         //error = parseError
     }
     func xmlGetter(relativePath: String? = nil) -> XMLParser {
-        
-        let bookPath = self.compressedBook.fileURL.path
-        let bookURL = URL(fileURLWithPath: bookPath).deletingPathExtension().lastPathComponent
-        let currentWorkingPath = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
-        var archiveURL = currentWorkingPath!
-        archiveURL.appendPathComponent(bookURL)
+        let compressedBookPath = self.compressedBook.fileURL.path
+        var archiveURL = workDir
+        archiveURL.appendPathComponent(bookFolder)
         if !fileManager.fileExists(atPath: archiveURL.path){
-            try! fileManager.copyItem(atPath: bookPath, toPath: archiveURL.path)
+            try! fileManager.copyItem(atPath: compressedBookPath, toPath: archiveURL.path)
         }
-        archiveURL.appendPathComponent(relativePath ?? "META-INF/container.xml")
-        fileManager.fileExists(atPath: archiveURL.path )
-        let uncompressedBookPath: URL = archiveURL
-        let container =  fileManager.contents(atPath: uncompressedBookPath.path)
-        if let data = container {
-            return XMLParser(data: data)
-        } else {
-            return XMLParser(contentsOf: uncompressedBookPath)!
+        var uncompressedBookData: String {
+            if let path = relativePath {
+                if path.contains("OEBPS") {
+                    return path
+                } else {
+                    return "OEBPS/\(path)"
+                }
+            } else {
+                return "META-INF/container.xml"
+            }
         }
+        archiveURL.appendPathComponent(uncompressedBookData)
+        return XMLParser(contentsOf: archiveURL)!
+        
     }
 }
 

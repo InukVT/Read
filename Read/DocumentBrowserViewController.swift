@@ -72,7 +72,6 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
                 let documentUI = DocumentViewController()
                 documentUI.document = document
                 documentUI.viewWillAppear(true)
-                //print(book.package)//.value(forKey: "rootfile"))
             } else {
                 
             }

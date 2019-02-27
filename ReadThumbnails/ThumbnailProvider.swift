@@ -54,11 +54,19 @@ class ThumbnailProvider: QLThumbnailProvider {
         })
         openingSemaphore.wait()
         
+
         guard openingSuccess else { return false }
        /* let documentFile = DocumentViewController()
         documentFile.document = document
         documentFile.thumb().draw(in: frame)
         */
+        let ePubCover = ePub(document)
+        if let cover = ePubCover.cover {
+            cover
+                .draw(in: frame)
+        }
+        
+        
         let closingSemaphore = DispatchSemaphore(value: 0)
         document.close { (_) in
             closingSemaphore.signal()
