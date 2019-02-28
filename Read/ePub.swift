@@ -23,7 +23,7 @@ class ePub: NSObject, XMLParserDelegate {
     var author: String?
     
     var cover: UIImage?
-    var coverLink: String?
+    private var coverLink: String?
     
     init(_ compressedBook: Document){
         self.fileManager = FileManager()
@@ -38,26 +38,19 @@ class ePub: NSObject, XMLParserDelegate {
     }
 
     private func doXML() {
-        self.parser = xmlGetter()
-        self.parser.delegate = self
-        self.parser.parse()
-        if let fullpath = rootfile {
-            self.parser = xmlGetter(relativePath: fullpath)
+        //self.parser = xmlGetter()
+        readEpub() { xml in
+            self.parser = xml
             self.parser.delegate = self
             self.parser.parse()
         }
-        if let fullpath = coverLink {
-            self.parser = xmlGetter(relativePath: fullpath)
-            self.parser.delegate = self
-            self.parser.parse()
-            if let image = cover {
-                print(image.size)
+        if let fullpath = rootfile {
+            readEpub(fullpath) { xml in
+                self.parser = xml
+                self.parser.delegate = self
+                self.parser.parse()
             }
         }
-        var deleteTMP = compressedBook.fileURL
-        deleteTMP.deletePathExtension()
-        try? fileManager.removeItem(at: deleteTMP)
-        
     }
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]){
         switch elementName {
@@ -102,13 +95,16 @@ class ePub: NSObject, XMLParserDelegate {
         print("failure error: ", parseError)
         //error = parseError
     }
-    func xmlGetter(relativePath: String? = nil) -> XMLParser {
+    
+    /// Unpack the epub, get specified xml file, container.xml if no `relativePath` has been passed in, parse xml file, and delete the unpacked epub file afterwards
+    private func readEpub(_ relativePath: String? = nil, closure: (XMLParser) -> ()) {
         let compressedBookPath = self.compressedBook.fileURL.path
-        var archiveURL = workDir
-        archiveURL.appendPathComponent(bookFolder)
-        if !fileManager.fileExists(atPath: archiveURL.path){
-            try! fileManager.copyItem(atPath: compressedBookPath, toPath: archiveURL.path)
+        var uncompressedBookURL = workDir
+        uncompressedBookURL.appendPathComponent(bookFolder)
+        if !fileManager.fileExists(atPath: uncompressedBookURL.path){
+            try! fileManager.copyItem(atPath: compressedBookPath, toPath: uncompressedBookURL.path)
         }
+        
         var uncompressedBookData: String {
             if let path = relativePath {
                 if path.contains("OEBPS") {
@@ -120,13 +116,38 @@ class ePub: NSObject, XMLParserDelegate {
                 return "META-INF/container.xml"
             }
         }
-        archiveURL.appendPathComponent(uncompressedBookData)
-        return XMLParser(contentsOf: archiveURL)!
         
+        closure(XMLParser(contentsOf: uncompressedBookURL.appendingPathComponent(uncompressedBookData))!)
+        try? fileManager.removeItem(at: uncompressedBookURL)
     }
 }
 
 enum XMLError: Error {
     case FileExists
     case SomethingWentWrong
+    case coverNotFound
+}
+
+extension ePub {
+    /// Returns the cover image of a given book as `UIImage`
+    func getCover() throws -> UIImage {
+        if let coverPath = coverLink {
+            var returnImage: UIImage?
+            readEpub(coverPath){ xml in
+                self.parser = xml
+                self.parser.delegate = self
+                self.parser.parse()
+                if let image = cover {
+                    returnImage = image
+                }
+            }
+            if (returnImage != nil) {
+                return returnImage!
+            } else {
+                throw XMLError.coverNotFound
+            }
+        } else {
+            throw XMLError.coverNotFound
+        }
+    }
 }

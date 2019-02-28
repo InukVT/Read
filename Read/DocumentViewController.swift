@@ -21,6 +21,7 @@ class DocumentViewController: UIViewController {
                 if let author = book.author {
                     print(author)
                 }
+                print(try? book.getCover())
             } else {
             }
         })

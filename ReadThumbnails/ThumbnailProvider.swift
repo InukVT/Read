@@ -61,9 +61,8 @@ class ThumbnailProvider: QLThumbnailProvider {
         documentFile.thumb().draw(in: frame)
         */
         let ePubCover = ePub(document)
-        if let cover = ePubCover.cover {
-            cover
-                .draw(in: frame)
+        if let cover = try? ePubCover.getCover() {
+            cover.draw(in: frame)
         }
         
         
