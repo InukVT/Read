@@ -66,7 +66,7 @@ class ePub: NSObject, XMLParserDelegate {
             }
         case "img":
             if attributeDict["id"] == "coverimage" {
-                let imagePath = workDir.appendingPathComponent(bookFolder).appendingPathComponent(attributeDict["src"]!).path
+                let imagePath = workDir.appendingPathComponent(bookFolder).appendingPathComponent("OEBPS").appendingPathComponent(attributeDict["src"]!).path
                 if fileManager.fileExists(atPath: imagePath) {
                     cover = UIImage(data: fileManager.contents(atPath: imagePath)!)
                 }
