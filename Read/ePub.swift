@@ -19,7 +19,7 @@ class ePub: NSObject, XMLParserDelegate{
     private var tag: String?
     private var rootfile: String?
     private let bookFolder: String
-    private let workOEBPS: URL
+    //private var workOEBPS: URL?
     
     var title: String?
     var author: String?
@@ -32,7 +32,7 @@ class ePub: NSObject, XMLParserDelegate{
         self.compressedBook = compressedBook
         let currentWorkingPath = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
         self.workDir = currentWorkingPath!
-        self.workOEBPS = workDir.appendingPathComponent("OEBPS")
+
         
         self.bookFolder = URL(fileURLWithPath: self.compressedBook.fileURL.path).deletingPathExtension().lastPathComponent
         super.init()
@@ -67,6 +67,7 @@ class ePub: NSObject, XMLParserDelegate{
                 coverLink = "\(attributeDict["href"] ?? "cover.xhtml")"
                 
             }
+            /*
         case "img":
             if attributeDict["id"] == "coverimage" {
                 let imagePath = workOEBPS.appendingPathComponent(attributeDict["src"]!).path
@@ -74,6 +75,7 @@ class ePub: NSObject, XMLParserDelegate{
                     cover = UIImage(data: fileManager.contents(atPath: imagePath)!)
                 }
             }
+             */
         default:
             self.tag = elementName
             break
@@ -121,7 +123,7 @@ class ePub: NSObject, XMLParserDelegate{
         }
         
         closure(XMLParser(contentsOf: uncompressedBookURL.appendingPathComponent(uncompressedBookData))!)
-        try? fileManager.removeItem(at: uncompressedBookURL)
+       try? fileManager.removeItem(at: uncompressedBookURL)
     }
 }
 
@@ -135,20 +137,29 @@ extension ePub {
     /// Returns the cover image of a given book as `UIImage`
     func getCover(frame: CGRect) throws -> UIImage {
         if let coverPath = coverLink {
+            let workOEBPS = workDir.appendingPathComponent(bookFolder).appendingPathComponent("OEBPS")
             var cover: UIImage?
             let webView = WKWebView()
-            let workCoverPath = workOEBPS.appendingPathComponent(coverPath).path
-                webView.loadFileURL(URL(fileURLWithPath: workCoverPath ), allowingReadAccessTo: URL(fileURLWithPath: workOEBPS.path))
-            if  webView.isLoading == false {
-                let snapshotConfig = WKSnapshotConfiguration()
-                snapshotConfig.rect = frame
-                webView.takeSnapshot(with: snapshotConfig) { (image,error) in
-                    if image != nil {
-                        cover = image!
-                    } else if error != nil {
-                        print(error!)
+            let workCoverURL = workOEBPS.appendingPathComponent(coverPath)
+            //let coverData = fileManager.contents(atPath: workCoverPath)
+            readEpub{ _ in
+                //if fileManager.fileExists(atPath: workCoverURL.path) {
+                    let coverHTMLString = try? String(contentsOf: workCoverURL, encoding: .utf8)
+                    if let coverHTML = coverHTMLString {
+                        webView.loadHTMLString(coverHTML, baseURL: workOEBPS)
+                        //if  webView.isLoading == true {
+                            let snapshotConfig = WKSnapshotConfiguration()
+                            snapshotConfig.rect = frame
+                            webView.takeSnapshot(with: snapshotConfig) { (image,error) in
+                                if image != nil {
+                                    cover = image!
+                                } else if error != nil {
+                                    print(error!)
+                                }
+                            }
+                        //}
                     }
-                }
+                //}
             }
  
             if cover != nil {
