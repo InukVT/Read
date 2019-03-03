@@ -21,10 +21,10 @@ class DocumentViewController: UIViewController {
                 if let author = book.author {
                     print(author)
                 }
-               // if let cover = try? book.getCover() {
-                //    print(cover)
-                //}
-                
+                let rect = CGRect(x: 0, y: 0, width: 20, height: 30)
+                if let cover = try? book.getCover(frame: rect) {
+                   print(cover)
+                }
             } else {
             }
         })

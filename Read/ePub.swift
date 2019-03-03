@@ -19,6 +19,7 @@ class ePub: NSObject, XMLParserDelegate{
     private var tag: String?
     private var rootfile: String?
     private let bookFolder: String
+    private let workOEBPS: URL
     
     var title: String?
     var author: String?
@@ -31,6 +32,7 @@ class ePub: NSObject, XMLParserDelegate{
         self.compressedBook = compressedBook
         let currentWorkingPath = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
         self.workDir = currentWorkingPath!
+        self.workOEBPS = workDir.appendingPathComponent("OEBPS")
         
         self.bookFolder = URL(fileURLWithPath: self.compressedBook.fileURL.path).deletingPathExtension().lastPathComponent
         super.init()
@@ -67,7 +69,7 @@ class ePub: NSObject, XMLParserDelegate{
             }
         case "img":
             if attributeDict["id"] == "coverimage" {
-                let imagePath = workDir.appendingPathComponent(bookFolder).appendingPathComponent("OEBPS").appendingPathComponent(attributeDict["src"]!).path
+                let imagePath = workOEBPS.appendingPathComponent(attributeDict["src"]!).path
                 if fileManager.fileExists(atPath: imagePath) {
                     cover = UIImage(data: fileManager.contents(atPath: imagePath)!)
                 }
@@ -131,35 +133,29 @@ enum XMLError: Error {
 
 extension ePub {
     /// Returns the cover image of a given book as `UIImage`
-    func getCover(frame: CGRect) throws -> Void {
+    func getCover(frame: CGRect) throws -> UIImage {
         if let coverPath = coverLink {
+            var cover: UIImage?
             let webView = WKWebView()
-                webView.loadFileURL(URL(fileURLWithPath: workDir.path + "OEBPS/" + coverPath), allowingReadAccessTo: URL(fileURLWithPath: workDir.path))
-            //let snapshotConfig = WKSnapshotConfiguration()
-            //var returnImage: UIImage?
-            webView.draw(frame)
-            /*
-            webView.takeSnapshot(with: snapshotConfig) { (image,error) in
-                /*readEpub(coverPath){ xml in
-                    self.parser = xml
-                    self.parser.delegate = self
-                    self.parser.parse()
-                    if let image = cover {
-                        returnImage = image
+            let workCoverPath = workOEBPS.appendingPathComponent(coverPath).path
+                webView.loadFileURL(URL(fileURLWithPath: workCoverPath ), allowingReadAccessTo: URL(fileURLWithPath: workOEBPS.path))
+            if  webView.isLoading == false {
+                let snapshotConfig = WKSnapshotConfiguration()
+                snapshotConfig.rect = frame
+                webView.takeSnapshot(with: snapshotConfig) { (image,error) in
+                    if image != nil {
+                        cover = image!
+                    } else if error != nil {
+                        print(error!)
                     }
-                }*/
-                returnImage = image
-                if error != nil {
-                    print(error!)
                 }
             }
  
-            if returnImage != nil {
-                return returnImage!
+            if cover != nil {
+                return cover!
             } else {
                 throw XMLError.coverNotFound
             }
- */
         } else {
             throw XMLError.coverNotFound
         }
