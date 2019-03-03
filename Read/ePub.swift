@@ -10,7 +10,7 @@ import UIKit
 import WebKit
 
 /// Monolith ePub handler class, with _some_ metadate. This needs to be broken into smalle KISS-y classes and structs for convenience!
-class ePub: NSObject, XMLParserDelegate{
+class ePub: NSObject{
     private var parser = XMLParser()
     private let fileManager: FileManager
     private var workDir: URL
@@ -133,21 +133,24 @@ enum XMLError: Error {
     case coverNotFound
 }
 
-extension ePub {
+extension ePub: XMLParserDelegate {
     /// Returns the cover image of a given book as `UIImage`
     func getCover(frame: CGRect) throws -> UIImage {
         if let coverPath = coverLink {
-            let workOEBPS = workDir.appendingPathComponent(bookFolder).appendingPathComponent("OEBPS")
+
             var cover: UIImage?
-            let webView = WKWebView()
-            let workCoverURL = workOEBPS.appendingPathComponent(coverPath)
-            //let coverData = fileManager.contents(atPath: workCoverPath)
             readEpub{ _ in
-                //if fileManager.fileExists(atPath: workCoverURL.path) {
+                let workOEBPS = workDir.appendingPathComponent(bookFolder).appendingPathComponent("OEBPS")
+                let webView = WKWebView()
+                let workCoverURL = workOEBPS.appendingPathComponent(coverPath)
+                if fileManager.fileExists(atPath: workCoverURL.path) {
                     let coverHTMLString = try? String(contentsOf: workCoverURL, encoding: .utf8)
                     if let coverHTML = coverHTMLString {
                         webView.loadHTMLString(coverHTML, baseURL: workOEBPS)
-                        //if  webView.isLoading == true {
+                        let webFrame = webView.frame
+                        webView.uiDelegate = self as? WKUIDelegate
+                        webView.draw(webFrame)
+                        if  webView.isLoading == true {
                             let snapshotConfig = WKSnapshotConfiguration()
                             snapshotConfig.rect = frame
                             webView.takeSnapshot(with: snapshotConfig) { (image,error) in
@@ -157,9 +160,9 @@ extension ePub {
                                     print(error!)
                                 }
                             }
-                        //}
+                        }
                     }
-                //}
+                }
             }
  
             if cover != nil {
