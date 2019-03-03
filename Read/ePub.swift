@@ -7,9 +7,10 @@
 //
 import Foundation
 import UIKit
+import WebKit
 
 /// Monolith ePub handler class, with _some_ metadate. This needs to be broken into smalle KISS-y classes and structs for convenience!
-class ePub: NSObject, XMLParserDelegate {
+class ePub: NSObject, XMLParserDelegate{
     private var parser = XMLParser()
     private let fileManager: FileManager
     private var workDir: URL
@@ -130,22 +131,35 @@ enum XMLError: Error {
 
 extension ePub {
     /// Returns the cover image of a given book as `UIImage`
-    func getCover() throws -> UIImage {
+    func getCover(frame: CGRect) throws -> Void {
         if let coverPath = coverLink {
-            var returnImage: UIImage?
-            readEpub(coverPath){ xml in
-                self.parser = xml
-                self.parser.delegate = self
-                self.parser.parse()
-                if let image = cover {
-                    returnImage = image
+            let webView = WKWebView()
+                webView.loadFileURL(URL(fileURLWithPath: workDir.path + "OEBPS/" + coverPath), allowingReadAccessTo: URL(fileURLWithPath: workDir.path))
+            //let snapshotConfig = WKSnapshotConfiguration()
+            //var returnImage: UIImage?
+            webView.draw(frame)
+            /*
+            webView.takeSnapshot(with: snapshotConfig) { (image,error) in
+                /*readEpub(coverPath){ xml in
+                    self.parser = xml
+                    self.parser.delegate = self
+                    self.parser.parse()
+                    if let image = cover {
+                        returnImage = image
+                    }
+                }*/
+                returnImage = image
+                if error != nil {
+                    print(error!)
                 }
             }
-            if (returnImage != nil) {
+ 
+            if returnImage != nil {
                 return returnImage!
             } else {
                 throw XMLError.coverNotFound
             }
+ */
         } else {
             throw XMLError.coverNotFound
         }
