@@ -8,9 +8,11 @@
 import Foundation
 import UIKit
 import WebKit
+import ZIPFoundation
 
 /// Monolith ePub handler class, with _some_ metadate. This needs to be broken into smalle KISS-y classes and structs for convenience!
 class ePub: NSObject, XMLParserDelegate{
+    // MARK: - Book metadata
     private var parser = XMLParser()
     private let fileManager: FileManager
     private var workDir: URL
@@ -19,6 +21,7 @@ class ePub: NSObject, XMLParserDelegate{
     private var tag: String?
     private var rootfile: String?
     private let bookFolder: String
+    private var OEBPS: Bool?
     //private var workOEBPS: URL?
     
     var title: String?
@@ -30,8 +33,8 @@ class ePub: NSObject, XMLParserDelegate{
     init(_ compressedBook: Document){
         self.fileManager = FileManager()
         self.compressedBook = compressedBook
-        let currentWorkingPath = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
-        self.workDir = currentWorkingPath!
+        self.workDir = fileManager.temporaryDirectory
+
 
         
         self.bookFolder = URL(fileURLWithPath: self.compressedBook.fileURL.path).deletingPathExtension().lastPathComponent
@@ -39,26 +42,28 @@ class ePub: NSObject, XMLParserDelegate{
         
         doXML()
     }
-
+    // MARK: - XML Parser Functions
     private func doXML() {
         //self.parser = xmlGetter()
-        readEpub() { xml in
+        readEpub() { xml, _ in
             self.parser = xml
             self.parser.delegate = self
             self.parser.parse()
         }
         if let fullpath = rootfile {
-            readEpub(fullpath) { xml in
+            readEpub(fullpath) { xml, _ in
                 self.parser = xml
                 self.parser.delegate = self
                 self.parser.parse()
             }
         }
     }
+    
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]){
         switch elementName {
         case "rootfile":
             if let fullpath = attributeDict["full-path"] {
+                if fullpath.contains("OEBPS"){OEBPS = true}
                 rootfile = fullpath
             }
             break
@@ -92,23 +97,31 @@ class ePub: NSObject, XMLParserDelegate{
         //error = parseError
     }
     
+    // MARK: - ePub unzipper
     /// Unpack the epub, get specified xml file, container.xml if no `relativePath` has been passed in, parse xml file, and delete the unpacked epub file afterwards
-    private func readEpub(_ relativePath: String? = nil, closure: (XMLParser) -> ()) {
+    private func readEpub(_ relativePath: String? = nil, closure: (XMLParser, URL) -> ()) {
         
-        let compressedBookPath = self.compressedBook.fileURL
+        let compressedBookURL = self.compressedBook.fileURL
         var isZIP = false
-        var uncompressedBookURL = workDir
-        if (!fileManager.fileExists(atPath: compressedBookPath.appendingPathComponent("META-INF").appendingPathComponent("container.xml").path)){
-            // MARK: - unzip please
-            uncompressedBookURL.appendPathComponent(bookFolder)
-            if !fileManager.fileExists(atPath: uncompressedBookURL.path){
-                try! fileManager.copyItem(atPath: compressedBookPath.path, toPath: uncompressedBookURL.path)
+        var uncompressedBookURL: URL = compressedBookURL
+        if (!fileManager.fileExists(atPath: compressedBookURL.appendingPathComponent("META-INF").appendingPathComponent("container.xml").path)){
+            uncompressedBookURL = unzip{
+                uncompressedBookURL = workDir.appendingPathComponent(bookFolder)
+                uncompressedBookURL.appendPathExtension("zip")
+                
+                if !fileManager.fileExists(atPath: uncompressedBookURL.path){
+                    try! fileManager.copyItem(atPath: compressedBookURL.path, toPath: uncompressedBookURL.path)
+                    
+                }
+                return uncompressedBookURL
             }
             isZIP = true
+        } else {
+            print(fileManager.fileExists(atPath: compressedBookURL.appendingPathComponent("META-INF").appendingPathComponent("container.xml").path))
         }
         var uncompressedBookData: String {
             if let path = relativePath {
-                if path.contains("OEBPS") {
+                if let _ = OEBPS {
                     return path
                 } else {
                     return "OEBPS/\(path)"
@@ -118,26 +131,38 @@ class ePub: NSObject, XMLParserDelegate{
             }
         }
         
-        closure(XMLParser(contentsOf: uncompressedBookURL.appendingPathComponent(uncompressedBookData))!)
+        closure(XMLParser(contentsOf: uncompressedBookURL.appendingPathComponent(uncompressedBookData))!, uncompressedBookURL)
         if isZIP {
             try? fileManager.removeItem(at: uncompressedBookURL)
         }
     }
+    
+    func unzip(closure: () -> (URL)) -> URL {
+        let archive: URL = closure()
+        var destinationURL = workDir
+            destinationURL = destinationURL.appendingPathComponent(self.bookFolder)
+        do {
+            try fileManager.createDirectory(at: destinationURL, withIntermediateDirectories: true, attributes: nil)
+            try fileManager.unzipItem(at: archive, to: destinationURL)
+            try fileManager.removeItem(at: archive)
+        } catch {
+            print("Extraction of ZIP archive failed with error:\(error)")
+        }
+        
+        return destinationURL
+    }
+    
 }
 
-enum XMLError: Error {
-    case FileExists
-    case SomethingWentWrong
-    case coverNotFound
-}
 
 extension ePub {
+    // MARK: - Cover generator
     /// Returns the cover image of a given book as `UIImage`
     func getCover(frame: CGRect) throws -> UIImage {
         if let coverPath = coverLink {
 
             var cover: UIImage?
-            readEpub{ _ in
+            readEpub{ _, workDir in
                 
                 let workOEBPS = workDir.appendingPathComponent(bookFolder).appendingPathComponent("OEBPS")
                 let webView = WKWebView()
@@ -173,4 +198,11 @@ extension ePub {
             throw XMLError.coverNotFound
         }
     }
+}
+
+// MARK: - Custom errors
+enum XMLError: Error {
+    case FileExists
+    case SomethingWentWrong
+    case coverNotFound
 }
