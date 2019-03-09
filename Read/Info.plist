@@ -20,6 +20,7 @@
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>org.idpf.epub-container.comment</string>
+				<string>org.idpf.epub-container</string>
 				<string>org.idpf.epub-folder</string>
 				<string>com.apple.ibooks.epub</string>
 			</array>
