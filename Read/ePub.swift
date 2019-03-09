@@ -10,7 +10,7 @@ import UIKit
 import WebKit
 
 /// Monolith ePub handler class, with _some_ metadate. This needs to be broken into smalle KISS-y classes and structs for convenience!
-class ePub: NSObject{
+class ePub: NSObject, XMLParserDelegate{
     private var parser = XMLParser()
     private let fileManager: FileManager
     private var workDir: URL
@@ -67,15 +67,6 @@ class ePub: NSObject{
                 coverLink = "\(attributeDict["href"] ?? "cover.xhtml")"
                 
             }
-            /*
-        case "img":
-            if attributeDict["id"] == "coverimage" {
-                let imagePath = workOEBPS.appendingPathComponent(attributeDict["src"]!).path
-                if fileManager.fileExists(atPath: imagePath) {
-                    cover = UIImage(data: fileManager.contents(atPath: imagePath)!)
-                }
-            }
-             */
         default:
             self.tag = elementName
             break
@@ -103,13 +94,18 @@ class ePub: NSObject{
     
     /// Unpack the epub, get specified xml file, container.xml if no `relativePath` has been passed in, parse xml file, and delete the unpacked epub file afterwards
     private func readEpub(_ relativePath: String? = nil, closure: (XMLParser) -> ()) {
-        let compressedBookPath = self.compressedBook.fileURL.path
-        var uncompressedBookURL = workDir
-        uncompressedBookURL.appendPathComponent(bookFolder)
-        if !fileManager.fileExists(atPath: uncompressedBookURL.path){
-            try! fileManager.copyItem(atPath: compressedBookPath, toPath: uncompressedBookURL.path)
-        }
         
+        let compressedBookPath = self.compressedBook.fileURL
+        var isZIP = false
+        var uncompressedBookURL = workDir
+        if (!fileManager.fileExists(atPath: compressedBookPath.appendingPathComponent("META-INF").appendingPathComponent("container.xml").path)){
+            // MARK: - unzip please
+            uncompressedBookURL.appendPathComponent(bookFolder)
+            if !fileManager.fileExists(atPath: uncompressedBookURL.path){
+                try! fileManager.copyItem(atPath: compressedBookPath.path, toPath: uncompressedBookURL.path)
+            }
+            isZIP = true
+        }
         var uncompressedBookData: String {
             if let path = relativePath {
                 if path.contains("OEBPS") {
@@ -123,7 +119,9 @@ class ePub: NSObject{
         }
         
         closure(XMLParser(contentsOf: uncompressedBookURL.appendingPathComponent(uncompressedBookData))!)
-       try? fileManager.removeItem(at: uncompressedBookURL)
+        if isZIP {
+            try? fileManager.removeItem(at: uncompressedBookURL)
+        }
     }
 }
 
@@ -133,22 +131,23 @@ enum XMLError: Error {
     case coverNotFound
 }
 
-extension ePub: XMLParserDelegate {
+extension ePub {
     /// Returns the cover image of a given book as `UIImage`
     func getCover(frame: CGRect) throws -> UIImage {
         if let coverPath = coverLink {
 
             var cover: UIImage?
             readEpub{ _ in
+                
                 let workOEBPS = workDir.appendingPathComponent(bookFolder).appendingPathComponent("OEBPS")
                 let webView = WKWebView()
                 let workCoverURL = workOEBPS.appendingPathComponent(coverPath)
+                
                 if fileManager.fileExists(atPath: workCoverURL.path) {
                     let coverHTMLString = try? String(contentsOf: workCoverURL, encoding: .utf8)
                     if let coverHTML = coverHTMLString {
                         webView.loadHTMLString(coverHTML, baseURL: workOEBPS)
                         let webFrame = webView.frame
-                        webView.uiDelegate = self as? WKUIDelegate
                         webView.draw(webFrame)
                         if  webView.isLoading == true {
                             let snapshotConfig = WKSnapshotConfiguration()
