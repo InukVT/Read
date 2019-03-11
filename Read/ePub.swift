@@ -21,21 +21,24 @@ class ePub: NSObject, XMLParserDelegate{
     private var tag: String?
     private var rootfile: String?
     private let bookFolder: String
-    private var OEBPS: Bool?
+    private var currentWorkDir: String?
     //private var workOEBPS: URL?
     
-    var title: String?
-    var author: String?
+    private(set) var title: String?
+    private(set) var author: [String]
+    private(set) var bookDescription: String?
     
-    var cover: UIImage?
+    private(set) var cover: UIImage?
     private var coverLink: String?
     
     init(_ compressedBook: Document){
         self.fileManager = FileManager()
         self.compressedBook = compressedBook
         self.workDir = fileManager.temporaryDirectory
-
-
+        title = ""
+        author = []
+        bookDescription = ""
+        
         
         self.bookFolder = URL(fileURLWithPath: self.compressedBook.fileURL.path).deletingPathExtension().lastPathComponent
         super.init()
