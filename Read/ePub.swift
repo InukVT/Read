@@ -66,7 +66,6 @@ class ePub: NSObject, XMLParserDelegate{
         switch elementName {
         case "rootfile":
             if let fullpath = attributeDict["full-path"] {
-                if fullpath.contains("OEBPS"){OEBPS = true}
                 rootfile = fullpath
             }
             break
@@ -82,12 +81,14 @@ class ePub: NSObject, XMLParserDelegate{
     }
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         if let workingTag = tag{
-            if string != "\n    "{
+            if string != "\n    " || string != "\n\t\t"{
                 switch workingTag {
                 case "dc:title":
-                    title = string
+                    title?.append(string)
                 case "dc:creator":
-                    author = string
+                    author.append(string)
+                case "dc:description":
+                    bookDescription?.append(string)
                 default:
                     //print(workingTag)
                     break
@@ -119,18 +120,21 @@ class ePub: NSObject, XMLParserDelegate{
                 return uncompressedBookURL
             }
             isZIP = true
-        } else {
-            print(fileManager.fileExists(atPath: compressedBookURL.appendingPathComponent("META-INF").appendingPathComponent("container.xml").path))
         }
         var uncompressedBookData: String {
             if let path = relativePath {
-                if let _ = OEBPS {
+                if path.contains("/"){
+                    currentWorkDir = URL(fileURLWithPath: path).deletingLastPathComponent().path
+                    return path
+                }else if path.contains(".opf"){
                     return path
                 } else {
-                    return "OEBPS/\(path)"
+                    return "\(currentWorkDir!)/\(path)"
                 }
             } else {
+                currentWorkDir = ""
                 return "META-INF/container.xml"
+                
             }
         }
         
