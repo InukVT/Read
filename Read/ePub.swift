@@ -10,10 +10,23 @@ import WebKit
 import ZIPFoundation
 import XMLCoder
 
+
+struct package: Codable {
+    private(set) var metadata: EpubMeta?
+    enum CodingKeys: String, CodingKey {
+        case metadata = "metadata"
+    }
+}
+
 struct EpubMeta: Codable {
     private(set) var title: String?
-    private(set) var author: [String]
-    private(set) var bookDescription: String?
+    //private(set) var author: [String]
+    //private(set) var bookDescription: String?
+    enum CodingKeys: String, CodingKey {
+        case title = "dc:title"
+        //case author = "dc:creator"
+        //case bookDescription =
+    }
 }
 // MARK: - Book metadata
 /// ePub handler class
@@ -45,19 +58,23 @@ extension ePub {
         var error: XMLError?
         
         unpackEpub { dataPath in
-            var rootfileXML = rootfile()
+            var rootfileXML = container()
             let decoder = XMLDecoder()
             if let xmlData = try? Data(contentsOf: dataPath.appendingPathComponent("META-INF/container.xml")) {
-                rootfileXML = try! decoder.decode(rootfile.self, from: xmlData)
-                
+                var xmlString = String(data: xmlData, encoding: .utf8)
+                print(xmlString)
+                rootfileXML = try! decoder.decode(container.self, from: (xmlString?.data(using: .utf8))!)
+                print(rootfileXML.rootfiles?.rootfile?.path)
             } else {
                 error = .NotEpub
             }
             
-            if let xmlData = try? Data(contentsOf: dataPath.appendingPathComponent(rootfileXML.path!)) {
-                
-                epub = try! decoder.decode(EpubMeta.self, from: xmlData)
-                print(epub!.author)
+            if let xmlData = try? Data(contentsOf: dataPath.appendingPathComponent((rootfileXML.rootfiles?.rootfile?.path!)!)) {
+                var xmlString = String(data: xmlData, encoding: .utf8)
+                print(xmlString)
+                var packageXML = package()
+                    packageXML = try! decoder.decode(package.self, from: (xmlString?.data(using: .utf8))!)
+                epub = packageXML.metadata
             } else {
                 error = .SomethingWentWrong
             }
@@ -158,6 +175,20 @@ extension ePub {
         } else {
             throw XMLError.coverNotFound
         }
+    }
+}
+
+fileprivate struct container: Codable {
+    var rootfiles: rootfiles?
+    enum CodingKeys: String, CodingKey {
+        case rootfiles = "rootfiles"
+    }
+}
+
+fileprivate struct rootfiles: Codable {
+    var rootfile: rootfile?
+    enum CodingKeys: String, CodingKey {
+        case rootfile = "rootfile"
     }
 }
 
