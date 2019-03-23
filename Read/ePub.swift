@@ -9,101 +9,91 @@ import Foundation
 import UIKit
 import WebKit
 import ZIPFoundation
+import XMLParsing
+
+struct EpubMeta: Codable {
+    private(set) var title: String?
+    private(set) var author: [String]
+    private(set) var bookDescription: String?
+}
 
 /// Monolith ePub handler class, with _some_ metadate. This needs to be broken into smalle KISS-y classes and structs for convenience!
-class ePub: NSObject, XMLParserDelegate{
+struct ePub{
     // MARK: - Book metadata
-    private var parser = XMLParser()
-    private let fileManager: FileManager
+    //private var parser = XMLParser()
+    private var fileManager: FileManager
     private var workDir: URL
     private var compressedBook: Document
     private var metadata: String?
     private var tag: String?
     private var rootfile: String?
     private let bookFolder: String
-    private var currentWorkDir: String?
     //private var workOEBPS: URL?
-    
+    /*
     private(set) var title: String?
     private(set) var author: [String]
     private(set) var bookDescription: String?
-    
+    */
+    let meta: EpubMeta
     private(set) var cover: UIImage?
     private var coverLink: String?
     
-    init(_ compressedBook: Document){
+
+    init(_ compressedBook: Document) throws {
         self.fileManager = FileManager()
         self.compressedBook = compressedBook
         self.workDir = fileManager.temporaryDirectory
-        title = ""
-        author = []
-        bookDescription = ""
-        
-        
+        //title = ""
+        //author = []
+        //bookDescription = ""
+        if let epub = try? doXML() {
+            meta = epub
+        } else {
+            throw XMLError.SomethingWentWrong
+        }
         self.bookFolder = URL(fileURLWithPath: self.compressedBook.fileURL.path).deletingPathExtension().lastPathComponent
-        super.init()
+//        super.init()
         
-        doXML()
-    }
-    // MARK: - XML Parser Functions
-    private func doXML() {
-        //self.parser = xmlGetter()
-        readEpub() { xml, _ in
-            self.parser = xml
-            self.parser.delegate = self
-            self.parser.parse()
-        }
-        if let fullpath = rootfile {
-            readEpub(fullpath) { xml, _ in
-                self.parser = xml
-                self.parser.delegate = self
-                self.parser.parse()
-            }
-        }
-    }
+
+    }   
+}
+// MAKR: - New ePub XML Parser
+extension ePub {
     
-    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]){
-        switch elementName {
-        case "rootfile":
-            if let fullpath = attributeDict["full-path"] {
-                rootfile = fullpath
-            }
-            break
-        case "item":
-            if attributeDict["id"] == "cover" {
-                coverLink = "\(attributeDict["href"] ?? "cover.xhtml")"
+    private func doXML() throws -> EpubMeta {
+        var epub: EpubMeta?
+        var error: XMLError?
+        readEpub { dataPath in
+            var rootfile = Rootfile()
+            let decoder = XMLDecoder()
+            if let xmlData = try? Data(contentsOf: dataPath.appendingPathComponent("META-INF/container.xml")) {
+                rootfile = try! decoder.decode(Rootfile.self, from: xmlData)
                 
+            } else {
+                error = .NotEpub
             }
-        default:
-            self.tag = elementName
-            break
+            
+            if let xmlData = try? Data(contentsOf: dataPath.appendingPathComponent(rootfile.path!)) {
+                
+                epub = try! decoder.decode(EpubMeta.self, from: xmlData)
+                print(epub!.author)
+            } else {
+                error = .SomethingWentWrong
+            }
+            
+        }
+        if let error = error {
+            throw error
+        } else {
+            return epub!
         }
     }
-    func parser(_ parser: XMLParser, foundCharacters string: String) {
-        if let workingTag = tag{
-            if string != "\n    " || string != "\n\t\t"{
-                switch workingTag {
-                case "dc:title":
-                    title?.append(string)
-                case "dc:creator":
-                    author.append(string)
-                case "dc:description":
-                    bookDescription?.append(string)
-                default:
-                    //print(workingTag)
-                    break
-                }
-            }
-        }
-    }
-    func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
-        print("failure error: ", parseError)
-        //error = parseError
-    }
+}
+// MARK: - ePub unzipper
+extension ePub {
     
-    // MARK: - ePub unzipper
     /// Unpack the epub, get specified xml file, container.xml if no `relativePath` has been passed in, parse xml file, and delete the unpacked epub file afterwards
-    private func readEpub(_ relativePath: String? = nil, closure: (XMLParser, URL) -> ()) {
+    private func readEpub(_ relativePath: String? = nil, closure: (URL) -> ()) {
         
         let compressedBookURL = self.compressedBook.fileURL
         var isZIP = false
@@ -121,33 +111,17 @@ class ePub: NSObject, XMLParserDelegate{
             }
             isZIP = true
         }
-        var uncompressedBookData: String {
-            if let path = relativePath {
-                if path.contains("/"){
-                    currentWorkDir = URL(fileURLWithPath: path).deletingLastPathComponent().path
-                    return path
-                }else if path.contains(".opf"){
-                    return path
-                } else {
-                    return "\(currentWorkDir!)/\(path)"
-                }
-            } else {
-                currentWorkDir = ""
-                return "META-INF/container.xml"
-                
-            }
-        }
         
-        closure(XMLParser(contentsOf: uncompressedBookURL.appendingPathComponent(uncompressedBookData))!, uncompressedBookURL)
+        closure(uncompressedBookURL)
         if isZIP {
             try? fileManager.removeItem(at: uncompressedBookURL)
         }
     }
-    
-    func unzip(closure: () -> (URL)) -> URL {
+
+    private func unzip(closure: () -> (URL)) -> URL {
         let archive: URL = closure()
         var destinationURL = workDir
-            destinationURL = destinationURL.appendingPathComponent(self.bookFolder)
+        destinationURL = destinationURL.appendingPathComponent(self.bookFolder)
         do {
             try fileManager.createDirectory(at: destinationURL, withIntermediateDirectories: true, attributes: nil)
             try fileManager.unzipItem(at: archive, to: destinationURL)
@@ -158,20 +132,17 @@ class ePub: NSObject, XMLParserDelegate{
         
         return destinationURL
     }
-    
 }
-
-
+// MARK: - Cover generator
 extension ePub {
-    // MARK: - Cover generator
     /// Returns the cover image of a given book as `UIImage`
     func getCover(frame: CGRect) throws -> UIImage {
         if let coverPath = coverLink {
-
+            
             var cover: UIImage?
-            readEpub{ _, workDir in
+            readEpub{ workDir in
                 
-                let workOEBPS = workDir.appendingPathComponent(bookFolder).appendingPathComponent("OEBPS")
+                let workOEBPS = workDir.appendingPathComponent("OEBPS")
                 let webView = WKWebView()
                 let workCoverURL = workOEBPS.appendingPathComponent(coverPath)
                 
@@ -180,22 +151,24 @@ extension ePub {
                     if let coverHTML = coverHTMLString {
                         webView.loadHTMLString(coverHTML, baseURL: workOEBPS)
                         let webFrame = webView.frame
+                        //wait(40)
                         webView.draw(webFrame)
                         if  webView.isLoading == true {
-                            let snapshotConfig = WKSnapshotConfiguration()
-                            snapshotConfig.rect = frame
-                            webView.takeSnapshot(with: snapshotConfig) { (image,error) in
-                                if image != nil {
-                                    cover = image!
-                                } else if error != nil {
-                                    print(error!)
-                                }
+                            
+                        }
+                        let snapshotConfig = WKSnapshotConfiguration()
+                        snapshotConfig.rect = frame
+                        webView.takeSnapshot(with: snapshotConfig) { (image,error) in
+                            if image != nil {
+                                cover = image!
+                            } else if error != nil {
+                                print(error!)
                             }
                         }
                     }
                 }
             }
- 
+            
             if cover != nil {
                 return cover!
             } else {
@@ -207,9 +180,19 @@ extension ePub {
     }
 }
 
+fileprivate struct Rootfile: Codable {
+    var path: String?
+    var mediaType: String?
+    enum CodingKeys: String, CodingKey {
+        case path = "full-path"
+        case mediaType = "media-type"
+    }
+}
+
 // MARK: - Custom errors
 enum XMLError: Error {
     case FileExists
     case SomethingWentWrong
     case coverNotFound
+    case NotEpub
 }

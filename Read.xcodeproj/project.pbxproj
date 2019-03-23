@@ -16,11 +16,14 @@
 		FC84C3C72222933C008F8F31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC84C3C52222933C008F8F31 /* LaunchScreen.storyboard */; };
 		FC8B9DB22227119D002FEA2A /* ePub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DFA1822249D730020151B /* ePub.swift */; };
 		FC9DFA1922249D730020151B /* ePub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DFA1822249D730020151B /* ePub.swift */; };
+		FCA87B74224575B800C4C084 /* XMLParsing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCA87B73224575B800C4C084 /* XMLParsing.framework */; };
+		FCA87B75224575B800C4C084 /* XMLParsing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FCA87B73224575B800C4C084 /* XMLParsing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FCD327742234595900FB2C41 /* ZIPFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCD327732234595900FB2C41 /* ZIPFoundation.framework */; };
 		FCD327752234595900FB2C41 /* ZIPFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FCD327732234595900FB2C41 /* ZIPFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FCF1E7E22223CCA100081532 /* ThumbnailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF1E7E12223CCA100081532 /* ThumbnailProvider.swift */; };
 		FCF1E7E62223CCA100081532 /* ReadThumbnails.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FCF1E7DF2223CCA100081532 /* ReadThumbnails.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FCF1E7EC2223CF2100081532 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC10F8262223303600BA7636 /* Document.swift */; };
+		FCF4BE16223CD974008B9C83 /* ZIPFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCD327732234595900FB2C41 /* ZIPFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +44,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				FCD327752234595900FB2C41 /* ZIPFoundation.framework in Embed Frameworks */,
+				FCA87B75224575B800C4C084 /* XMLParsing.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -70,6 +74,7 @@
 		FC84C3C62222933C008F8F31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC84C3C82222933C008F8F31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC9DFA1822249D730020151B /* ePub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ePub.swift; sourceTree = "<group>"; };
+		FCA87B73224575B800C4C084 /* XMLParsing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XMLParsing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCD327732234595900FB2C41 /* ZIPFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ZIPFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF1E7DF2223CCA100081532 /* ReadThumbnails.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ReadThumbnails.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF1E7E12223CCA100081532 /* ThumbnailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailProvider.swift; sourceTree = "<group>"; };
@@ -82,6 +87,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCD327742234595900FB2C41 /* ZIPFoundation.framework in Frameworks */,
+				FCA87B74224575B800C4C084 /* XMLParsing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCF4BE16223CD974008B9C83 /* ZIPFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +113,7 @@
 		FC84C3AC2222933A008F8F31 = {
 			isa = PBXGroup;
 			children = (
+				FCA87B73224575B800C4C084 /* XMLParsing.framework */,
 				FCD327732234595900FB2C41 /* ZIPFoundation.framework */,
 				FC84C3B72222933A008F8F31 /* Read */,
 				FCF1E7E02223CCA100081532 /* ReadThumbnails */,

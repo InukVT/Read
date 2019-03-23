@@ -60,10 +60,10 @@ class ThumbnailProvider: QLThumbnailProvider {
         documentFile.document = document
         documentFile.thumb().draw(in: frame)
         */
-        let ePubCover = ePub(document)
-        /*if let cover = */try? ePubCover.getCover(frame: frame) //{
-           // cover.draw(in: frame)
-        //}
+        var ePubCover = ePub(document)
+        if let cover = try? ePubCover.getCover(frame: frame) {
+            cover.draw(in: frame)
+        }
         
         
         let closingSemaphore = DispatchSemaphore(value: 0)
