@@ -12,9 +12,9 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         // MARK: - unzipper
         .package(url: "https://github.com/weichsel/ZIPFoundation/", .upToNextMajor(from: "0.9.0")),
-        .package(url: "https://github.com/ShawnMoore/XMLParsing.git", from: "0.0.3")
+        .package(url: "https://github.com/MaxDesiatov/XMLCoder.git", from: "0.3.1")
         ],
     targets: [
-        .target(name: "Dependencies", dependencies: ["ZIPFoundation", "XMLParsing"], path: "." )
+        .target(name: "Dependencies", dependencies: ["ZIPFoundation", "XMLCoder"], path: "." )
     ]
 )

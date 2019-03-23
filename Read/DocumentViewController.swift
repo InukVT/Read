@@ -18,7 +18,7 @@ class DocumentViewController: UIViewController {
         document?.open(completionHandler: { (success) in
             if success {
                 if let book = try? ePub(self.document!){
-                    print(book.meta.author)
+                    print(book.meta!.author)
                 let rect = CGRect(x: 0, y: 0, width: 20, height: 30)
                 if let cover = try? book.getCover(frame: rect) {
                    print(cover)
