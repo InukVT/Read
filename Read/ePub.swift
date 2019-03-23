@@ -15,17 +15,16 @@ struct EpubMeta: Codable {
     private(set) var author: [String]
     private(set) var bookDescription: String?
 }
-
+// MARK: - Book metadata
 /// ePub handler class
-struct ePub {
-    // MARK: - Book metadata
-    private var fileManager: FileManager
-    private var workDir: URL
-    private var compressedBook: Document
+class ePub {
+    private let fileManager: FileManager
+    private let workDir: URL
+    private let compressedBook: Document
     private let bookFolder: String
     private var coverLink: String?
     /// ePub metadata, use this to get information such as author
-    let meta: EpubMeta?
+    private(set) var meta: EpubMeta? = nil
     private(set) var cover: UIImage?
     
     init(_ compressedBook: Document) throws {
@@ -33,13 +32,9 @@ struct ePub {
         self.compressedBook = compressedBook
         self.workDir = fileManager.temporaryDirectory
         self.bookFolder = URL(fileURLWithPath: compressedBook.fileURL.path).deletingPathExtension().lastPathComponent
-        do {
-            self.meta = try doXML()
-        } catch {
-            self.meta = nil
-            print(error)
-            throw error
-        }
+        //self.coverLink = nil
+        //self.cover = nil
+        self.meta = try doXML()
     }
 }
 // MAKR: - New ePub XML Parser
