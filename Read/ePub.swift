@@ -20,7 +20,9 @@ class ePub {
     private var coverLink: String?
     /// ePub metadata, use this to get information
     private(set) var meta: EpubMeta? = nil
+    private var manifest: Manifest? = nil
     private(set) var cover: UIImage?
+    private(set) var OEPBS: String = ""
     
     init(_ compressedBook: Document) throws {
         self.fileManager = FileManager()
@@ -29,14 +31,16 @@ class ePub {
         self.bookFolder = URL(fileURLWithPath: compressedBook.fileURL.path).deletingPathExtension().lastPathComponent
         //self.coverLink = nil
         //self.cover = nil
-        self.meta = try doXML()
+        try doXML{ meta, manifest in
+            self.meta = meta
+            self.manifest = manifest
+        }
     }
 }
 // MAKR: - New ePub XML Parser
 extension ePub {
     
-    private func doXML() throws -> EpubMeta {
-        var epub: EpubMeta?
+    private func doXML(closure: (EpubMeta, Manifest) -> ()) throws -> Void {
         
         try unpackEpub { dataPath in
             var rootfileXML = container()
@@ -46,6 +50,11 @@ extension ePub {
                 let xmlData = try Data(contentsOf: dataPath.appendingPathComponent("META-INF/container.xml"))
                 let xmlString = String(data: xmlData, encoding: .utf8)
                 rootfileXML = try decoder.decode(container.self, from: (xmlString?.data(using: .utf8))!)
+                var oepbsURL: URL = URL(fileURLWithPath: (rootfileXML.rootfiles?.rootfile?.path)!)
+                oepbsURL.deleteLastPathComponent()
+                
+                self.OEPBS = oepbsURL.lastPathComponent
+                    
             } catch {
                 throw XMLError.NotEpub
             }
@@ -55,22 +64,20 @@ extension ePub {
                 let xmlString = String(data: xmlData, encoding: .utf8)
                 var packageXML = package()
                     packageXML = try decoder.decode(package.self, from: (xmlString?.data(using: .utf8))!)
-                epub = packageXML.metadata
+                closure(packageXML.metadata!, packageXML.manifest!)
             } catch {
                 print(error)
                 throw XMLError.SomethingWentWrong
             }
             
         }
-        
-        return epub!
     }
 }
 // MARK: - ePub unzipper
 extension ePub {
     
     /// Unpack the epub, get specified xml file, container.xml if no `relativePath` has been passed in, parse xml file, and delete the unpacked epub file afterwards
-    private func unpackEpub(_ relativePath: String? = nil, closure: (URL) throws -> ()) rethrows {
+    private func unpackEpub<T>(_ relativePath: String? = nil, closure: (URL) throws -> (T)) rethrows -> T{
         
         let compressedBookURL = self.compressedBook.fileURL
         var isZIP = false
@@ -88,10 +95,11 @@ extension ePub {
             isZIP = true
         }
         
-        try closure(uncompressedBookURL)
+        let cover = try closure(uncompressedBookURL)
         if isZIP {
             try? fileManager.removeItem(at: uncompressedBookURL)
         }
+        return cover
     }
 
     private func unzip(closure: () -> (URL)) -> URL {
@@ -113,46 +121,34 @@ extension ePub {
 extension ePub {
     /// Returns the cover image of a given book as `UIImage`
     func getCover(frame: CGRect) throws -> UIImage {
-        if let coverPath = coverLink {
+        return try unpackEpub{ workDir -> UIImage in
+            var coverName = ""
             
-            var cover: UIImage?
-            unpackEpub { workDir in
-                
-                let workOEBPS = workDir.appendingPathComponent("OEBPS")
-                let webView = WKWebView()
-                let workCoverURL = workOEBPS.appendingPathComponent(coverPath)
-                
-                if fileManager.fileExists(atPath: workCoverURL.path) {
-                    let coverHTMLString = try? String(contentsOf: workCoverURL, encoding: .utf8)
-                    if let coverHTML = coverHTMLString {
-                        webView.loadHTMLString(coverHTML, baseURL: workOEBPS)
-                        let webFrame = webView.frame
-                        //wait(40)
-                        webView.draw(webFrame)
-                        if  webView.isLoading == true {
-                            
-                        }
-                        let snapshotConfig = WKSnapshotConfiguration()
-                        snapshotConfig.rect = frame
-                        webView.takeSnapshot(with: snapshotConfig) { (image,error) in
-                            if image != nil {
-                                cover = image!
-                            } else if error != nil {
-                                print(error!)
-                            }
-                        }
+            if let items = self.meta?.meta {
+                for item in items {
+                    if item.name == "cover" {
+                        coverName = item.content!
                     }
                 }
             }
             
-            if cover != nil {
-                return cover!
-            } else {
-                throw XMLError.coverNotFound
+            if let items = self.manifest?.item {
+                
+                for item in items {
+                    if item.name == coverName {
+                        var coverURL = workDir
+                        coverURL.appendPathComponent(self.OEPBS)
+                        coverURL.appendPathComponent(item.link!)
+                        let coverData = try Data(contentsOf: coverURL)
+                        let cover = try UIImage(data: coverData)!
+                        return cover
+                    }
+                }
             }
-        } else {
+            
             throw XMLError.coverNotFound
         }
+        
     }
 }
 
@@ -181,19 +177,42 @@ fileprivate struct rootfile: Codable {
 
 struct package: Codable {
     private(set) var metadata: EpubMeta?
+    private(set) var manifest: Manifest?
 }
 
-struct Creators: Codable {
-    let value: String
-}
-struct Title: Codable {
-    let value: String
-}
+
+// MARK: - EpubMetaData
 struct EpubMeta: Codable {
-    private(set) var title: Title?
-    private(set) var creator: [Creators]?
-    //private(set) var bookDescription: String?
+    private(set) var title: String?
+    private(set) var creator: [Creators]? 
+    private(set) var meta: [Meta]?
 }
+struct Creators: Codable {
+    let id: String?
+    let value: String
+}
+struct Meta: Codable {
+    let name: String?
+    let content: String?
+}
+
+struct Manifest: Codable {
+    var item: [Items]?
+}
+
+struct Items: Codable {
+    var name: String?
+    var mediatype: String?
+    var link: String?
+    enum CodingKeys: String, CodingKey {
+        case name = "id"
+        case mediatype = "media-type"
+        case link = "href"
+    }
+}
+
+
+
 // MARK: - Custom errors
 enum XMLError: String, Error {
     case FileExists

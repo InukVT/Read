@@ -1,2 +1,6 @@
 .DS_Store
 /ReadDep/Package.resolved
+DerivedData
+ReadDeps/Package.resolved
+*.epub
+ReadDeps/Package.resolved

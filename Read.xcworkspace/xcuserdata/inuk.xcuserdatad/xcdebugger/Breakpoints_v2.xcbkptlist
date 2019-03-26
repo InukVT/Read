@@ -121,12 +121,60 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Read/ePub.swift"
-            timestampString = "575291345.2253489"
+            timestampString = "575321969.446613"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "doXML()"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "doXML(closure:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Foundation.URL) throws -&gt; () in Read.ePub.(doXML in _213F43BA844F388E3049D72924B623F5)() throws -&gt; Read.EpubMeta"
+                  moduleName = "Read"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/inuk/Library/Mobile%20Documents/com~apple~CloudDocs/Documents/Read/Read/ePub.swift"
+                  timestampString = "575292852.581618"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "1160">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Foundation.URL) throws -&gt; () in Read.ePub.(doXML in _213F43BA844F388E3049D72924B623F5)() throws -&gt; Read.EpubMeta"
+                  moduleName = "Read"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/inuk/Library/Mobile%20Documents/com~apple~CloudDocs/Documents/Read/Read/ePub.swift"
+                  timestampString = "575292852.585474"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "3072">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Read/ePub.swift"
+            timestampString = "575321969.4616441"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "doXML(closure:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -137,12 +185,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Read/ePub.swift"
-            timestampString = "575291345.235191"
+            timestampString = "575321969.462605"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "doXML()"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "doXML(closure:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -153,12 +201,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Read/ePub.swift"
-            timestampString = "575291345.2359"
+            timestampString = "575321969.4634269"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "doXML()"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "doXML(closure:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -169,12 +217,12 @@
                   moduleName = "Read"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/inuk/Library/Mobile%20Documents/com~apple~CloudDocs/Documents/Read/Read/ePub.swift"
-                  timestampString = "575291351.763321"
+                  timestampString = "575300752.623262"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "58"
-                  endingLineNumber = "58"
-                  offsetFromSymbolStart = "1492">
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "1644">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -184,30 +232,14 @@
                   moduleName = "Read"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/inuk/Library/Mobile%20Documents/com~apple~CloudDocs/Documents/Read/Read/ePub.swift"
-                  timestampString = "575291351.766535"
+                  timestampString = "575300752.628317"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "58"
-                  endingLineNumber = "58"
-                  offsetFromSymbolStart = "2680">
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "3140">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Read/ePub.swift"
-            timestampString = "575291345.236715"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "doXML()"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
