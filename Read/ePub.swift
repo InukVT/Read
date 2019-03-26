@@ -41,6 +41,7 @@ extension ePub {
         try unpackEpub { dataPath in
             var rootfileXML = container()
             let decoder = XMLDecoder()
+                decoder.shouldProcessNamespaces = true
             do {
                 let xmlData = try Data(contentsOf: dataPath.appendingPathComponent("META-INF/container.xml"))
                 let xmlString = String(data: xmlData, encoding: .utf8)
@@ -180,20 +181,12 @@ fileprivate struct rootfile: Codable {
 
 struct package: Codable {
     private(set) var metadata: EpubMeta?
-    enum CodingKeys: String, CodingKey {
-        case metadata = "metadata"
-    }
 }
 
 struct EpubMeta: Codable {
     private(set) var title: String?
-    private(set) var author: [String]?
+    private(set) var creator: [String]?
     //private(set) var bookDescription: String?
-    enum CodingKeys: String, CodingKey {
-        case title = "dc:title"
-        case author = "dc:creator"
-        //case bookDescription =
-    }
 }
 // MARK: - Custom errors
 enum XMLError: String, Error {
