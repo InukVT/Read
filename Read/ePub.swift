@@ -10,24 +10,6 @@ import WebKit
 import ZIPFoundation
 import XMLCoder
 
-
-struct package: Codable {
-    private(set) var metadata: EpubMeta?
-    enum CodingKeys: String, CodingKey {
-        case metadata = "metadata"
-    }
-}
-
-struct EpubMeta: Codable {
-    private(set) var title: String?
-    //private(set) var author: [String]
-    //private(set) var bookDescription: String?
-    enum CodingKeys: String, CodingKey {
-        case title = "dc:title"
-        //case author = "dc:creator"
-        //case bookDescription =
-    }
-}
 // MARK: - Book metadata
 /// ePub handler class
 class ePub {
@@ -36,7 +18,7 @@ class ePub {
     private let compressedBook: Document
     private let bookFolder: String
     private var coverLink: String?
-    /// ePub metadata, use this to get information such as author
+    /// ePub metadata, use this to get information
     private(set) var meta: EpubMeta? = nil
     private(set) var cover: UIImage?
     
@@ -55,37 +37,32 @@ extension ePub {
     
     private func doXML() throws -> EpubMeta {
         var epub: EpubMeta?
-        var error: XMLError?
         
-        unpackEpub { dataPath in
+        try unpackEpub { dataPath in
             var rootfileXML = container()
             let decoder = XMLDecoder()
-            if let xmlData = try? Data(contentsOf: dataPath.appendingPathComponent("META-INF/container.xml")) {
-                var xmlString = String(data: xmlData, encoding: .utf8)
-                print(xmlString)
-                rootfileXML = try! decoder.decode(container.self, from: (xmlString?.data(using: .utf8))!)
-                print(rootfileXML.rootfiles?.rootfile?.path)
-            } else {
-                error = .NotEpub
+            do {
+                let xmlData = try Data(contentsOf: dataPath.appendingPathComponent("META-INF/container.xml"))
+                let xmlString = String(data: xmlData, encoding: .utf8)
+                rootfileXML = try decoder.decode(container.self, from: (xmlString?.data(using: .utf8))!)
+            } catch {
+                throw XMLError.NotEpub
             }
             
-            if let xmlData = try? Data(contentsOf: dataPath.appendingPathComponent((rootfileXML.rootfiles?.rootfile?.path!)!)) {
-                var xmlString = String(data: xmlData, encoding: .utf8)
-                print(xmlString)
+            do {
+                let xmlData = try Data(contentsOf: dataPath.appendingPathComponent((rootfileXML.rootfiles?.rootfile?.path!)!))
+                let xmlString = String(data: xmlData, encoding: .utf8)
                 var packageXML = package()
-                    packageXML = try! decoder.decode(package.self, from: (xmlString?.data(using: .utf8))!)
+                    packageXML = try decoder.decode(package.self, from: (xmlString?.data(using: .utf8))!)
                 epub = packageXML.metadata
-            } else {
-                error = .SomethingWentWrong
+            } catch {
+                print(error)
+                throw XMLError.SomethingWentWrong
             }
             
         }
-      
-        if let error = error {
-            throw error
-        } else {
-            return epub!
-        }
+        
+        return epub!
     }
 }
 // MARK: - ePub unzipper
@@ -201,10 +178,27 @@ fileprivate struct rootfile: Codable {
     }
 }
 
+struct package: Codable {
+    private(set) var metadata: EpubMeta?
+    enum CodingKeys: String, CodingKey {
+        case metadata = "metadata"
+    }
+}
+
+struct EpubMeta: Codable {
+    private(set) var title: String?
+    private(set) var author: [String]?
+    //private(set) var bookDescription: String?
+    enum CodingKeys: String, CodingKey {
+        case title = "dc:title"
+        case author = "dc:creator"
+        //case bookDescription =
+    }
+}
 // MARK: - Custom errors
-enum XMLError: Error {
+enum XMLError: String, Error {
     case FileExists
     case SomethingWentWrong
-    case coverNotFound
-    case NotEpub
+    case coverNotFound = "Cover not found"
+    case NotEpub = "The given fils is not a valid epub file"
 }

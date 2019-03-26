@@ -10,7 +10,70 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Read/DocumentViewController.swift"
-            timestampString = "575067077.164668"
+            timestampString = "575072417.967099"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool) -&gt; () in Read.DocumentViewController.viewWillAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "Read"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/inuk/Library/Mobile%20Documents/com~apple~CloudDocs/Documents/Read/Read/DocumentViewController.swift"
+                  timestampString = "575070624.166824"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "796">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool) -&gt; () in Read.DocumentViewController.viewWillAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "Read"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/inuk/Library/Mobile%20Documents/com~apple~CloudDocs/Documents/Read/Read/DocumentViewController.swift"
+                  timestampString = "575070624.171486"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "968">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool) -&gt; () in Read.DocumentViewController.viewWillAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "Read"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/inuk/Library/Mobile%20Documents/com~apple~CloudDocs/Documents/Read/Read/DocumentViewController.swift"
+                  timestampString = "575070624.175449"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "1272">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Read/DocumentViewController.swift"
+            timestampString = "575072417.967231"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "25"
@@ -26,12 +89,124 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Read/DocumentViewController.swift"
-            timestampString = "575067077.168704"
+            timestampString = "575072417.96732"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
             landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Read/DocumentViewController.swift"
+            timestampString = "575072417.967424"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Read/ePub.swift"
+            timestampString = "575291345.2253489"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "doXML()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Read/ePub.swift"
+            timestampString = "575291345.235191"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "doXML()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Read/ePub.swift"
+            timestampString = "575291345.2359"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "doXML()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Foundation.URL) throws -&gt; () in Read.ePub.(doXML in _213F43BA844F388E3049D72924B623F5)() throws -&gt; Read.EpubMeta"
+                  moduleName = "Read"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/inuk/Library/Mobile%20Documents/com~apple~CloudDocs/Documents/Read/Read/ePub.swift"
+                  timestampString = "575291351.763321"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "1492">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Foundation.URL) throws -&gt; () in Read.ePub.(doXML in _213F43BA844F388E3049D72924B623F5)() throws -&gt; Read.EpubMeta"
+                  moduleName = "Read"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/inuk/Library/Mobile%20Documents/com~apple~CloudDocs/Documents/Read/Read/ePub.swift"
+                  timestampString = "575291351.766535"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "2680">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Read/ePub.swift"
+            timestampString = "575291345.236715"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "doXML()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

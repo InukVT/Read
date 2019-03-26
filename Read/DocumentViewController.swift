@@ -17,14 +17,15 @@ class DocumentViewController: UIViewController {
         // Access the document
         document?.open(completionHandler: { (success) in
             if success {
-                if let book = try? ePub(self.document!){
-                    print(book.meta!.title)
-                let rect = CGRect(x: 0, y: 0, width: 20, height: 30)
-                if let cover = try? book.getCover(frame: rect) {
-                   print(cover)
+                do {
+                    let book = try ePub(self.document!)
+                    print(book.meta!.title as Any)
+                    let rect = CGRect(x: 0, y: 0, width: 20, height: 30)
+                    let cover = try book.getCover(frame: rect)
+                    print(cover)
+                } catch {
+                    print(error)
                 }
-                }
-            } else {
             }
         })
     }
