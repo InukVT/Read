@@ -183,9 +183,15 @@ struct package: Codable {
     private(set) var metadata: EpubMeta?
 }
 
+struct Creators: Codable {
+    let value: String
+}
+struct Title: Codable {
+    let value: String
+}
 struct EpubMeta: Codable {
-    private(set) var title: String?
-    private(set) var creator: [String]?
+    private(set) var title: Title?
+    private(set) var creator: [Creators]?
     //private(set) var bookDescription: String?
 }
 // MARK: - Custom errors
