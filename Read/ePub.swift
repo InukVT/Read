@@ -117,10 +117,10 @@ extension ePub {
         return destinationURL
     }
 }
-// MARK: - Cover generator
+// MARK: - Cover extractor
 extension ePub {
     /// Returns the cover image of a given book as `UIImage`
-    func getCover(frame: CGRect) throws -> UIImage {
+    func extractCover(frame: CGRect) throws -> UIImage {
         return try unpackEpub{ workDir -> UIImage in
             var coverName = ""
             
