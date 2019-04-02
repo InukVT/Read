@@ -5,9 +5,9 @@
         "package": "XMLCoder",
         "repositoryURL": "https://github.com/MaxDesiatov/XMLCoder.git",
         "state": {
-          "branch": null,
-          "revision": "bd22c206de700ea0ff7f0e3177176b0347f91bd8",
-          "version": "0.3.1"
+          "branch": "master",
+          "revision": "40222d80e60e61252f799e2f063cd67541a5817a",
+          "version": null
         }
       },
       {

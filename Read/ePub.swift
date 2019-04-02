@@ -6,13 +6,13 @@
 //  Copyright © 2019 Bastian Inuk Christensen. All rights reserved.
 //
 import Foundation
-import WebKit
 import ZIPFoundation
 import XMLCoder
+import UIKit
 
 // MARK: - Book metadata
 /// ePub handler class
-class ePub {
+class ePub: Collection {
     private let fileManager: FileManager
     private let workDir: URL
     private let compressedBook: Document
@@ -21,8 +21,10 @@ class ePub {
     /// ePub metadata, use this to get information
     private(set) var meta: EpubMeta? = nil
     private var manifest: Manifest? = nil
-    private(set) var cover: UIImage?
     private(set) var OEPBS: String = ""
+    
+    private var needsCleanup: Bool
+    private var uncompressedBookURL: URL
     
     init(_ compressedBook: Document) throws {
         self.fileManager = FileManager()
@@ -35,6 +37,17 @@ class ePub {
             self.meta = meta
             self.manifest = manifest
         }
+        unpackEpub()
+    }
+    
+    subscript(_: ePub.Index) -> ePub.Element{
+        
+    }
+    
+    deinit {
+        if (needsCleanup) {
+            try? fileManager.removeItem(at: uncompressedBookURL)
+        }
     }
 }
 // MAKR: - New ePub XML Parser
@@ -42,12 +55,12 @@ extension ePub {
     
     private func doXML(closure: (EpubMeta, Manifest) -> ()) throws -> Void {
         
-        try unpackEpub { dataPath in
+        //try unpackEpub { dataPath in
             var rootfileXML = container()
             let decoder = XMLDecoder()
                 decoder.shouldProcessNamespaces = true
             do {
-                let xmlData = try Data(contentsOf: dataPath.appendingPathComponent("META-INF/container.xml"))
+                let xmlData = try Data(contentsOf: uncompressedBookURL.appendingPathComponent("META-INF/container.xml"))
                 let xmlString = String(data: xmlData, encoding: .utf8)
                 rootfileXML = try decoder.decode(container.self, from: (xmlString?.data(using: .utf8))!)
                 var oepbsURL: URL = URL(fileURLWithPath: (rootfileXML.rootfiles?.rootfile?.path)!)
@@ -60,7 +73,7 @@ extension ePub {
             }
             
             do {
-                let xmlData = try Data(contentsOf: dataPath.appendingPathComponent((rootfileXML.rootfiles?.rootfile?.path!)!))
+                let xmlData = try Data(contentsOf: uncompressedBookURL.appendingPathComponent((rootfileXML.rootfiles?.rootfile?.path!)!))
                 let xmlString = String(data: xmlData, encoding: .utf8)
                 var packageXML = package()
                     packageXML = try decoder.decode(package.self, from: (xmlString?.data(using: .utf8))!)
@@ -70,40 +83,33 @@ extension ePub {
                 throw XMLError.SomethingWentWrong
             }
             
-        }
+        //}
     }
 }
 // MARK: - ePub unzipper
 extension ePub {
     
     /// Unpack the epub, get specified xml file, container.xml if no `relativePath` has been passed in, parse xml file, and delete the unpacked epub file afterwards
-    private func unpackEpub<T>(_ relativePath: String? = nil, closure: (URL) throws -> (T)) rethrows -> T{
+    private func unpackEpub(_ relativePath: String? = nil){
         
         let compressedBookURL = self.compressedBook.fileURL
-        var isZIP = false
         var uncompressedBookURL: URL = compressedBookURL
         if (!fileManager.fileExists(atPath: compressedBookURL.appendingPathComponent("META-INF").appendingPathComponent("container.xml").path)){
-            uncompressedBookURL = unzip{
-                uncompressedBookURL = workDir.appendingPathComponent(bookFolder)
-                uncompressedBookURL.appendPathExtension("zip")
-                
-                if !fileManager.fileExists(atPath: uncompressedBookURL.path){
-                    try! fileManager.copyItem(atPath: compressedBookURL.path, toPath: uncompressedBookURL.path)
-                }
-                return uncompressedBookURL
+            
+            uncompressedBookURL = workDir.appendingPathComponent(bookFolder)
+            uncompressedBookURL.appendPathExtension("zip")
+            
+            if !fileManager.fileExists(atPath: uncompressedBookURL.path){
+                try! fileManager.copyItem(atPath: compressedBookURL.path, toPath: uncompressedBookURL.path)
             }
-            isZIP = true
+            uncompressedBookURL = unzip(uncompressedBookURL)
+            
+            needsCleanup = true
+            self.uncompressedBookURL = uncompressedBookURL
         }
-        
-        let cover = try closure(uncompressedBookURL)
-        if isZIP {
-            try? fileManager.removeItem(at: uncompressedBookURL)
-        }
-        return cover
     }
 
-    private func unzip(closure: () -> (URL)) -> URL {
-        let archive: URL = closure()
+    private func unzip(_ archive: URL) -> URL {
         var destinationURL = workDir
         destinationURL = destinationURL.appendingPathComponent(self.bookFolder)
         do {
@@ -121,7 +127,7 @@ extension ePub {
 extension ePub {
     /// Returns the cover image of a given book as `UIImage`
     func extractCover(frame: CGRect) throws -> UIImage {
-        return try unpackEpub{ workDir -> UIImage in
+       // return try unpackEpub{ workDir -> UIImage in
             var coverName = ""
             
             if let items = self.meta?.meta {
@@ -133,21 +139,20 @@ extension ePub {
             }
             
             if let items = self.manifest?.item {
-                
                 for item in items {
                     if item.name == coverName {
-                        var coverURL = workDir
+                        var coverURL = uncompressedBookURL
                         coverURL.appendPathComponent(self.OEPBS)
                         coverURL.appendPathComponent(item.link!)
                         let coverData = try Data(contentsOf: coverURL)
-                        let cover = try UIImage(data: coverData)!
+                        let cover = UIImage(data: coverData)!
                         return cover
                     }
                 }
             }
             
             throw XMLError.coverNotFound
-        }
+        //}
         
     }
 }
