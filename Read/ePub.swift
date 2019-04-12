@@ -13,6 +13,7 @@ import UIKit
 // MARK: - Book metadata
 /// ePub handler class
 class ePub: Collection {
+    typealias Element = String
     private let fileManager: FileManager
     private let workDir: URL
     private let compressedBook: Document
