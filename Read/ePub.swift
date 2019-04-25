@@ -21,6 +21,8 @@ class ePub {
     /// ePub metadata, use this to get information
     private(set) var meta: EpubMeta? = nil
     private var manifest: Manifest? = nil
+    private(set) var pages: [String]
+    private var spine: spine? = nil
     private(set) var OEPBS: String = ""
     
     private var needsCleanup: Bool
@@ -31,10 +33,16 @@ class ePub {
         self.compressedBook = compressedBook
         self.workDir = fileManager.temporaryDirectory
         self.bookFolder = URL(fileURLWithPath: compressedBook.fileURL.path).deletingPathExtension().lastPathComponent
-        
+        self.pages = [String]()
         self.needsCleanup = false
         self.uncompressedBookURL = URL(fileURLWithPath: compressedBook.fileURL.path)
         try doXML()
+        self.pages = zip(spine!.itemref, manifest!.item!).compactMap { (arg) -> String in
+                let (a1, a2) = arg
+            if a1.idref == a2.name! {
+                return a2.link!
+            }
+        }
     }
     
     deinit {
@@ -43,10 +51,11 @@ class ePub {
         }
     }
 }
+/*
 // MARK: - Collection, make the this struct behave like an array of strings
 extension ePub: Collection{
     typealias Element = String
-    typealias Index = String
+    typealias Index = Int
     
     var startIndex: String {
         return ""
@@ -61,46 +70,54 @@ extension ePub: Collection{
     }
     
     subscript(index: Index) -> Element{
-        let element = ""
-        return element
+        if let pagesmeta = self.manifest{
+            if let spineitems = self.spine {
+                let page = spineitems.itemref[index].idref
+                    for item in pagesmeta {
+                        if item == page.name{
+                            return page.link!
+                        }
+                    }
+                
+            }
+        }
+        
     }
 }
-
+*/
 // MAKR: - New ePub XML Parser
 extension ePub {
     
     private func doXML() throws -> Void {
         unpackEpub()
-        //try unpackEpub { dataPath in
-            var rootfileXML = container()
-            let decoder = XMLDecoder()
-                decoder.shouldProcessNamespaces = true
-            do {
-                let xmlData = try Data(contentsOf: uncompressedBookURL.appendingPathComponent("META-INF/container.xml"))
-                let xmlString = String(data: xmlData, encoding: .utf8)
-                rootfileXML = try decoder.decode(container.self, from: (xmlString?.data(using: .utf8))!)
-                var oepbsURL: URL = URL(fileURLWithPath: (rootfileXML.rootfiles?.rootfile?.path)!)
-                oepbsURL.deleteLastPathComponent()
-                
-                self.OEPBS = oepbsURL.lastPathComponent
-                    
-            } catch {
-                throw XMLError.NotEpub
-            }
+        var rootfileXML = container()
+        let decoder = XMLDecoder()
+            decoder.shouldProcessNamespaces = true
+        do {
+            let xmlData = try Data(contentsOf: uncompressedBookURL.appendingPathComponent("META-INF/container.xml"))
+            let xmlString = String(data: xmlData, encoding: .utf8)
+            rootfileXML = try decoder.decode(container.self, from: (xmlString?.data(using: .utf8))!)
+            var oepbsURL: URL = URL(fileURLWithPath: (rootfileXML.rootfiles?.rootfile?.path)!)
+            oepbsURL.deleteLastPathComponent()
             
-            do {
-                let xmlData = try Data(contentsOf: uncompressedBookURL.appendingPathComponent((rootfileXML.rootfiles?.rootfile?.path!)!))
-                let xmlString = String(data: xmlData, encoding: .utf8)
-                var packageXML = package()
-                    packageXML = try decoder.decode(package.self, from: (xmlString?.data(using: .utf8))!)
-                self.meta = packageXML.metadata!
-                self.manifest = packageXML.manifest!
-            } catch {
-                print(error)
-                throw XMLError.SomethingWentWrong
-            }
+            self.OEPBS = oepbsURL.lastPathComponent
             
-        //}
+        } catch {
+            throw XMLError.NotEpub
+        }
+        
+        do {
+            let xmlData = try Data(contentsOf: uncompressedBookURL.appendingPathComponent((rootfileXML.rootfiles?.rootfile?.path!)!))
+            let xmlString = String(data: xmlData, encoding: .utf8)
+            var packageXML = package()
+                packageXML = try decoder.decode(package.self, from: (xmlString?.data(using: .utf8))!)
+            self.meta = packageXML.metadata!
+            self.manifest = packageXML.manifest!
+            self.spine = packageXML.spine
+        } catch {
+            print(error)
+            throw XMLError.SomethingWentWrong
+        }
     }
 }
 // MARK: - ePub unzipper
@@ -198,16 +215,17 @@ fileprivate struct rootfile: Codable {
 }
 
 struct package: Codable {
-    private(set) var metadata: EpubMeta?
-    private(set) var manifest: Manifest?
+    private(set) var metadata: EpubMeta
+    private(set) var manifest: Manifest
+    private(set) var spine: spine
 }
 
 
 // MARK: - EpubMetaData
 struct EpubMeta: Codable {
-    private(set) var title: String?
-    private(set) var creator: [Creators]? 
-    private(set) var meta: [Meta]?
+    private(set) var title: String
+    private(set) var creator: [Creators]?
+    private(set) var meta: [Meta]
 }
 struct Creators: Codable {
     let id: String?
@@ -219,13 +237,13 @@ struct Meta: Codable {
 }
 
 struct Manifest: Codable {
-    var item: [Items]?
+    var item: [Items]
 }
 
 struct Items: Codable {
-    var name: String?
-    var mediatype: String?
-    var link: String?
+    var name: String
+    var mediatype: String
+    var link: String
     enum CodingKeys: String, CodingKey {
         case name = "id"
         case mediatype = "media-type"
@@ -233,6 +251,13 @@ struct Items: Codable {
     }
 }
 
+struct spine: Codable {
+    var itemref: [itemref]
+}
+
+struct itemref: Codable {
+    var idref: String
+}
 
 
 // MARK: - Custom errors
