@@ -12,8 +12,7 @@ import UIKit
 
 // MARK: - Book metadata
 /// ePub handler class
-class ePub: Collection {
-    typealias Element = String
+class ePub {
     private let fileManager: FileManager
     private let workDir: URL
     private let compressedBook: Document
@@ -32,17 +31,10 @@ class ePub: Collection {
         self.compressedBook = compressedBook
         self.workDir = fileManager.temporaryDirectory
         self.bookFolder = URL(fileURLWithPath: compressedBook.fileURL.path).deletingPathExtension().lastPathComponent
-        //self.coverLink = nil
-        //self.cover = nil
-        try doXML{ meta, manifest in
-            self.meta = meta
-            self.manifest = manifest
-        }
-        unpackEpub()
-    }
-    
-    subscript(_: ePub.Index) -> ePub.Element{
         
+        self.needsCleanup = false
+        self.uncompressedBookURL = URL(fileURLWithPath: compressedBook.fileURL.path)
+        try doXML()
     }
     
     deinit {
@@ -51,11 +43,34 @@ class ePub: Collection {
         }
     }
 }
+// MARK: - Collection, make the this struct behave like an array of strings
+extension ePub: Collection{
+    typealias Element = String
+    typealias Index = String
+    
+    var startIndex: String {
+        return ""
+    }
+    
+    var endIndex: String {
+        return ""
+    }
+    
+    func index(after i: String) -> String {
+        return ""
+    }
+    
+    subscript(index: Index) -> Element{
+        let element = ""
+        return element
+    }
+}
+
 // MAKR: - New ePub XML Parser
 extension ePub {
     
-    private func doXML(closure: (EpubMeta, Manifest) -> ()) throws -> Void {
-        
+    private func doXML() throws -> Void {
+        unpackEpub()
         //try unpackEpub { dataPath in
             var rootfileXML = container()
             let decoder = XMLDecoder()
@@ -78,7 +93,8 @@ extension ePub {
                 let xmlString = String(data: xmlData, encoding: .utf8)
                 var packageXML = package()
                     packageXML = try decoder.decode(package.self, from: (xmlString?.data(using: .utf8))!)
-                closure(packageXML.metadata!, packageXML.manifest!)
+                self.meta = packageXML.metadata!
+                self.manifest = packageXML.manifest!
             } catch {
                 print(error)
                 throw XMLError.SomethingWentWrong

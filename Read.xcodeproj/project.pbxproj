@@ -16,6 +16,7 @@
 		FC84C3C72222933C008F8F31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC84C3C52222933C008F8F31 /* LaunchScreen.storyboard */; };
 		FC8B9DB22227119D002FEA2A /* ePub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DFA1822249D730020151B /* ePub.swift */; };
 		FC9DFA1922249D730020151B /* ePub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DFA1822249D730020151B /* ePub.swift */; };
+		FCA5BD352271B88A001E4EE5 /* epub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA5BD342271B88A001E4EE5 /* epub.swift */; };
 		FCA9136E2246A1EE0036F634 /* XMLCoder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCA9136D2246A1EE0036F634 /* XMLCoder.framework */; };
 		FCA9136F2246A1EE0036F634 /* XMLCoder.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FCA9136D2246A1EE0036F634 /* XMLCoder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FCD327742234595900FB2C41 /* ZIPFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCD327732234595900FB2C41 /* ZIPFoundation.framework */; };
@@ -28,6 +29,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		FCA5BD372271B88A001E4EE5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FC84C3AD2222933A008F8F31 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FC84C3B42222933A008F8F31;
+			remoteInfo = Read;
+		};
 		FCF1E7E42223CCA100081532 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FC84C3AD2222933A008F8F31 /* Project object */;
@@ -75,6 +83,9 @@
 		FC84C3C62222933C008F8F31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC84C3C82222933C008F8F31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC9DFA1822249D730020151B /* ePub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ePub.swift; sourceTree = "<group>"; };
+		FCA5BD322271B88A001E4EE5 /* epub.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = epub.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCA5BD342271B88A001E4EE5 /* epub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = epub.swift; sourceTree = "<group>"; };
+		FCA5BD362271B88A001E4EE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCA9136D2246A1EE0036F634 /* XMLCoder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XMLCoder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCD327732234595900FB2C41 /* ZIPFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ZIPFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF1E7DF2223CCA100081532 /* ReadThumbnails.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ReadThumbnails.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +100,13 @@
 			files = (
 				FCA9136E2246A1EE0036F634 /* XMLCoder.framework in Frameworks */,
 				FCD327742234595900FB2C41 /* ZIPFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCA5BD2F2271B88A001E4EE5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +137,7 @@
 				FCD327732234595900FB2C41 /* ZIPFoundation.framework */,
 				FC84C3B72222933A008F8F31 /* Read */,
 				FCF1E7E02223CCA100081532 /* ReadThumbnails */,
+				FCA5BD332271B88A001E4EE5 /* epub */,
 				FC84C3B62222933A008F8F31 /* Products */,
 				AE91134C52B5C0172EA4E34A /* Frameworks */,
 			);
@@ -129,6 +148,7 @@
 			children = (
 				FC84C3B52222933A008F8F31 /* Read.app */,
 				FCF1E7DF2223CCA100081532 /* ReadThumbnails.appex */,
+				FCA5BD322271B88A001E4EE5 /* epub.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -147,6 +167,16 @@
 				FC9DFA1822249D730020151B /* ePub.swift */,
 			);
 			path = Read;
+			sourceTree = "<group>";
+		};
+		FCA5BD332271B88A001E4EE5 /* epub */ = {
+			isa = PBXGroup;
+			children = (
+				FCA5BD342271B88A001E4EE5 /* epub.swift */,
+				FCA5BD362271B88A001E4EE5 /* Info.plist */,
+			);
+			name = epub;
+			path = "../../Library/Mobile Documents/com~apple~CloudDocs/Documents/Read/epub";
 			sourceTree = "<group>";
 		};
 		FCF1E7E02223CCA100081532 /* ReadThumbnails */ = {
@@ -181,6 +211,24 @@
 			productReference = FC84C3B52222933A008F8F31 /* Read.app */;
 			productType = "com.apple.product-type.application";
 		};
+		FCA5BD312271B88A001E4EE5 /* epub */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FCA5BD3B2271B88A001E4EE5 /* Build configuration list for PBXNativeTarget "epub" */;
+			buildPhases = (
+				FCA5BD2E2271B88A001E4EE5 /* Sources */,
+				FCA5BD2F2271B88A001E4EE5 /* Frameworks */,
+				FCA5BD302271B88A001E4EE5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FCA5BD382271B88A001E4EE5 /* PBXTargetDependency */,
+			);
+			name = epub;
+			productName = epub;
+			productReference = FCA5BD322271B88A001E4EE5 /* epub.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		FCF1E7DE2223CCA100081532 /* ReadThumbnails */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FCF1E7E72223CCA100081532 /* Build configuration list for PBXNativeTarget "ReadThumbnails" */;
@@ -204,12 +252,16 @@
 		FC84C3AD2222933A008F8F31 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1010;
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Bastian Inuk Christensen";
 				TargetAttributes = {
 					FC84C3B42222933A008F8F31 = {
 						CreatedOnToolsVersion = 10.1;
+					};
+					FCA5BD312271B88A001E4EE5 = {
+						CreatedOnToolsVersion = 10.2;
+						TestTargetID = FC84C3B42222933A008F8F31;
 					};
 					FCF1E7DE2223CCA100081532 = {
 						CreatedOnToolsVersion = 10.1;
@@ -231,6 +283,7 @@
 			targets = (
 				FC84C3B42222933A008F8F31 /* Read */,
 				FCF1E7DE2223CCA100081532 /* ReadThumbnails */,
+				FCA5BD312271B88A001E4EE5 /* epub */,
 			);
 		};
 /* End PBXProject section */
@@ -243,6 +296,13 @@
 				FC10F82B2223308200BA7636 /* Main.storyboard in Resources */,
 				FC84C3C72222933C008F8F31 /* LaunchScreen.storyboard in Resources */,
 				FC84C3C42222933C008F8F31 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCA5BD302271B88A001E4EE5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +328,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FCA5BD2E2271B88A001E4EE5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FCA5BD352271B88A001E4EE5 /* epub.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FCF1E7DB2223CCA100081532 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -281,6 +349,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		FCA5BD382271B88A001E4EE5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FC84C3B42222933A008F8F31 /* Read */;
+			targetProxy = FCA5BD372271B88A001E4EE5 /* PBXContainerItemProxy */;
+		};
 		FCF1E7E52223CCA100081532 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = FCF1E7DE2223CCA100081532 /* ReadThumbnails */;
@@ -460,6 +533,48 @@
 			};
 			name = Release;
 		};
+		FCA5BD392271B88A001E4EE5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2D7T23VV7R;
+				INFOPLIST_FILE = epub/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.inuk.epub;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Read.app/Read";
+			};
+			name = Debug;
+		};
+		FCA5BD3A2271B88A001E4EE5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2D7T23VV7R;
+				INFOPLIST_FILE = epub/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.inuk.epub;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Read.app/Read";
+			};
+			name = Release;
+		};
 		FCF1E7E82223CCA100081532 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -521,6 +636,15 @@
 			buildConfigurations = (
 				FC84C3CC2222933C008F8F31 /* Debug */,
 				FC84C3CD2222933C008F8F31 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FCA5BD3B2271B88A001E4EE5 /* Build configuration list for PBXNativeTarget "epub" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FCA5BD392271B88A001E4EE5 /* Debug */,
+				FCA5BD3A2271B88A001E4EE5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

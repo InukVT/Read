@@ -17,7 +17,7 @@
                BlueprintIdentifier = "FC84C3B42222933A008F8F31"
                BuildableName = "Read.app"
                BlueprintName = "Read"
-               ReferencedContainer = "container:Read.xcodeproj">
+               ReferencedContainer = "container:../../Library/Mobile Documents/com~apple~CloudDocs/Documents/Read/Read.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,6 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "FCA5BD312271B88A001E4EE5"
+               BuildableName = "epub.xctest"
+               BlueprintName = "epub"
+               ReferencedContainer = "container:../../Library/Mobile Documents/com~apple~CloudDocs/Documents/Read/Read.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
@@ -35,7 +45,7 @@
             BlueprintIdentifier = "FC84C3B42222933A008F8F31"
             BuildableName = "Read.app"
             BlueprintName = "Read"
-            ReferencedContainer = "container:Read.xcodeproj">
+            ReferencedContainer = "container:../../Library/Mobile Documents/com~apple~CloudDocs/Documents/Read/Read.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -58,7 +68,7 @@
             BlueprintIdentifier = "FC84C3B42222933A008F8F31"
             BuildableName = "Read.app"
             BlueprintName = "Read"
-            ReferencedContainer = "container:Read.xcodeproj">
+            ReferencedContainer = "container:../../Library/Mobile Documents/com~apple~CloudDocs/Documents/Read/Read.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -77,7 +87,7 @@
             BlueprintIdentifier = "FC84C3B42222933A008F8F31"
             BuildableName = "Read.app"
             BlueprintName = "Read"
-            ReferencedContainer = "container:Read.xcodeproj">
+            ReferencedContainer = "container:../../Library/Mobile Documents/com~apple~CloudDocs/Documents/Read/Read.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
