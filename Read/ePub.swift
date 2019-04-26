@@ -22,7 +22,7 @@ class ePub {
     private(set) var meta: EpubMeta? = nil
     private var manifest: Manifest? = nil
     private(set) var pages: [String]
-    private var spine: spine? = nil
+    private var spine: Spine? = nil
     private(set) var OEPBS: String = ""
     
     private var needsCleanup: Bool
@@ -36,11 +36,13 @@ class ePub {
         self.pages = [String]()
         self.needsCleanup = false
         self.uncompressedBookURL = URL(fileURLWithPath: compressedBook.fileURL.path)
+        unpackEpub()
         try doXML()
-        self.pages = zip(spine!.itemref, manifest!.item!).compactMap { (arg) -> String in
-                let (a1, a2) = arg
-            if a1.idref == a2.name! {
-                return a2.link!
+        for page in self.spine!.itemref {
+            for item in self.manifest!.item{
+                if page.idref == item.name {
+                    pages.append(item.link)
+                }
             }
         }
     }
@@ -89,7 +91,7 @@ extension ePub: Collection{
 extension ePub {
     
     private func doXML() throws -> Void {
-        unpackEpub()
+        
         var rootfileXML = container()
         let decoder = XMLDecoder()
             decoder.shouldProcessNamespaces = true
@@ -111,8 +113,8 @@ extension ePub {
             let xmlString = String(data: xmlData, encoding: .utf8)
             var packageXML = package()
                 packageXML = try decoder.decode(package.self, from: (xmlString?.data(using: .utf8))!)
-            self.meta = packageXML.metadata!
-            self.manifest = packageXML.manifest!
+            self.meta = packageXML.metadata
+            self.manifest = packageXML.manifest
             self.spine = packageXML.spine
         } catch {
             print(error)
@@ -177,7 +179,7 @@ extension ePub {
                     if item.name == coverName {
                         var coverURL = uncompressedBookURL
                         coverURL.appendPathComponent(self.OEPBS)
-                        coverURL.appendPathComponent(item.link!)
+                        coverURL.appendPathComponent(item.link)
                         let coverData = try Data(contentsOf: coverURL)
                         let cover = UIImage(data: coverData)!
                         return cover
@@ -215,9 +217,9 @@ fileprivate struct rootfile: Codable {
 }
 
 struct package: Codable {
-    private(set) var metadata: EpubMeta
-    private(set) var manifest: Manifest
-    private(set) var spine: spine
+    private(set) var metadata: EpubMeta?
+    private(set) var manifest: Manifest?
+    private(set) var spine: Spine?
 }
 
 
@@ -251,7 +253,8 @@ struct Items: Codable {
     }
 }
 
-struct spine: Codable {
+// MARK: - Spine
+struct Spine: Codable {
     var itemref: [itemref]
 }
 
