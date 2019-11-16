@@ -15,7 +15,7 @@ class DocumentViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Access the document
-        document?.open(completionHandler: { (success) in
+        document?.open { (success) in
             if success {
                 do {
                     let book = try ePub(self.document!)
@@ -24,7 +24,7 @@ class DocumentViewController: UIViewController {
                     print(error)
                 }
             }
-        })
+        }
     }
 
 }

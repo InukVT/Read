@@ -14,28 +14,19 @@ class ThumbnailProvider: QLThumbnailProvider {
         
         let fileURL = request.fileURL
         let maximumSize = request.maximumSize
-        let scale = request.scale
-        
-        // Make use of the parameters of the request to determine the context size for the subsequent steps.
-        let contextSize = contextSizeForFile(at: fileURL, maximumSize: maximumSize, scale: scale)
         
         let drawingBlock: () -> Bool = {
-            let success = ThumbnailProvider.drawThumbnail(for: fileURL, contextSize: contextSize)
+            let success = ThumbnailProvider.drawThumbnail(for: fileURL, contextSize: maximumSize)
             // Indicate whether or not drawing the thumbnail succeeded.
             return success
         }
         
         // Create the QLThumbnailReply with the requested context size and the drawing block that draws the thumbnail.
-        let reply = QLThumbnailReply(contextSize: contextSize, currentContextDrawing: drawingBlock)
+        let reply = QLThumbnailReply(contextSize: maximumSize, currentContextDrawing: drawingBlock)
         
         // Call the completion handler and provide the reply.
         // No need to return an error, since thumbnails are always provided.
         handler(reply, nil)
-    }
-    private func contextSizeForFile(at URL: URL, maximumSize: CGSize, scale: CGFloat) -> CGSize {
-        
-        // In the case of the Particles files, the maximum requested size can be honored.
-        return maximumSize
     }
     
     private static func drawThumbnail(for fileURL: URL, contextSize: CGSize) -> Bool {
@@ -61,7 +52,8 @@ class ThumbnailProvider: QLThumbnailProvider {
         documentFile.thumb().draw(in: frame)
         */
         
-        let cover = try? ePub(document).extractCover(frame: frame)
+        let book = try? ePub(document)
+        let cover = try? book?.extractCover(frame: frame)
         if let drawCover = cover {
             drawCover.draw(in: frame)
         } else {

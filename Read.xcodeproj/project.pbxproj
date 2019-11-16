@@ -12,6 +12,8 @@
 		FC10F82B2223308200BA7636 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC10F82A2223308200BA7636 /* Main.storyboard */; };
 		FC1BFD0023804E6600D9A760 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = FC1BFCFF23804E6600D9A760 /* ZIPFoundation */; };
 		FC1BFD0323804EA400D9A760 /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = FC1BFD0223804EA400D9A760 /* XMLCoder */; };
+		FC57250723805BEA001A0E7F /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = FC57250623805BEA001A0E7F /* XMLCoder */; };
+		FC57250923805BED001A0E7F /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = FC57250823805BED001A0E7F /* ZIPFoundation */; };
 		FC84C3B92222933A008F8F31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC84C3B82222933A008F8F31 /* AppDelegate.swift */; };
 		FC84C3BB2222933A008F8F31 /* DocumentBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC84C3BA2222933A008F8F31 /* DocumentBrowserViewController.swift */; };
 		FC84C3C42222933C008F8F31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC84C3C32222933C008F8F31 /* Assets.xcassets */; };
@@ -64,6 +66,8 @@
 		FC10F8362223CADF00BA7636 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
 		FC1BFD0423804EF300D9A760 /* Read.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Read.entitlements; sourceTree = "<group>"; };
 		FC1BFD0523804EF300D9A760 /* ReadThumbnails.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReadThumbnails.entitlements; sourceTree = "<group>"; };
+		FC57250A23808D07001A0E7F /* QuickLookThumbnailing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLookThumbnailing.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/QuickLookThumbnailing.framework; sourceTree = DEVELOPER_DIR; };
+		FC57250C23808D0F001A0E7F /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/QuickLook.framework; sourceTree = DEVELOPER_DIR; };
 		FC84C3B52222933A008F8F31 /* Read.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Read.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC84C3B82222933A008F8F31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC84C3BA2222933A008F8F31 /* DocumentBrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBrowserViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +94,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC57250723805BEA001A0E7F /* XMLCoder in Frameworks */,
+				FC57250923805BED001A0E7F /* ZIPFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +105,8 @@
 		AE91134C52B5C0172EA4E34A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FC57250C23808D0F001A0E7F /* QuickLook.framework */,
+				FC57250A23808D07001A0E7F /* QuickLookThumbnailing.framework */,
 				FC10F8362223CADF00BA7636 /* QuickLook.framework */,
 			);
 			name = Frameworks;
@@ -190,6 +198,10 @@
 			dependencies = (
 			);
 			name = ReadThumbnails;
+			packageProductDependencies = (
+				FC57250623805BEA001A0E7F /* XMLCoder */,
+				FC57250823805BED001A0E7F /* ZIPFoundation */,
+			);
 			productName = ReadThumbnails;
 			productReference = FCF1E7DF2223CCA100081532 /* ReadThumbnails.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -334,6 +346,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: jonalist@gmail.com (EEJYCFU567)";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -396,6 +409,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: jonalist@gmail.com (EEJYCFU567)";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -484,7 +498,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = dk.manga.Read.ReadThumbnails;
+				PRODUCT_BUNDLE_IDENTIFIER = app.inuk.Read.ReadThumbnails;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -510,7 +524,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = dk.manga.Read.ReadThumbnails;
+				PRODUCT_BUNDLE_IDENTIFIER = app.inuk.Read.ReadThumbnails;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -581,6 +595,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FC1BFD0123804EA400D9A760 /* XCRemoteSwiftPackageReference "XMLCoder" */;
 			productName = XMLCoder;
+		};
+		FC57250623805BEA001A0E7F /* XMLCoder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FC1BFD0123804EA400D9A760 /* XCRemoteSwiftPackageReference "XMLCoder" */;
+			productName = XMLCoder;
+		};
+		FC57250823805BED001A0E7F /* ZIPFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FC1BFCFE23804E6600D9A760 /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
+			productName = ZIPFoundation;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
