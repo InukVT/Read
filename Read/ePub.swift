@@ -97,8 +97,7 @@ extension ePub {
             decoder.shouldProcessNamespaces = true
         do {
             let xmlData = try Data(contentsOf: uncompressedBookURL.appendingPathComponent("META-INF/container.xml"))
-            let xmlString = String(data: xmlData, encoding: .utf8)
-            rootfileXML = try decoder.decode(container.self, from: (xmlString?.data(using: .utf8))!)
+            rootfileXML = try decoder.decode(container.self, from: xmlData)
             var oepbsURL: URL = URL(fileURLWithPath: (rootfileXML.rootfiles?.rootfile?.path)!)
             oepbsURL.deleteLastPathComponent()
             
