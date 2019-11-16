@@ -3,39 +3,27 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		FC10F8272223303600BA7636 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC10F8262223303600BA7636 /* Document.swift */; };
 		FC10F8292223307900BA7636 /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC10F8282223307900BA7636 /* DocumentViewController.swift */; };
 		FC10F82B2223308200BA7636 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC10F82A2223308200BA7636 /* Main.storyboard */; };
+		FC1BFD0023804E6600D9A760 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = FC1BFCFF23804E6600D9A760 /* ZIPFoundation */; };
+		FC1BFD0323804EA400D9A760 /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = FC1BFD0223804EA400D9A760 /* XMLCoder */; };
 		FC84C3B92222933A008F8F31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC84C3B82222933A008F8F31 /* AppDelegate.swift */; };
 		FC84C3BB2222933A008F8F31 /* DocumentBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC84C3BA2222933A008F8F31 /* DocumentBrowserViewController.swift */; };
 		FC84C3C42222933C008F8F31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC84C3C32222933C008F8F31 /* Assets.xcassets */; };
 		FC84C3C72222933C008F8F31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC84C3C52222933C008F8F31 /* LaunchScreen.storyboard */; };
 		FC8B9DB22227119D002FEA2A /* ePub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DFA1822249D730020151B /* ePub.swift */; };
 		FC9DFA1922249D730020151B /* ePub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DFA1822249D730020151B /* ePub.swift */; };
-		FCA5BD352271B88A001E4EE5 /* epub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA5BD342271B88A001E4EE5 /* epub.swift */; };
-		FCA9136E2246A1EE0036F634 /* XMLCoder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCA9136D2246A1EE0036F634 /* XMLCoder.framework */; };
-		FCA9136F2246A1EE0036F634 /* XMLCoder.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FCA9136D2246A1EE0036F634 /* XMLCoder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		FCD327742234595900FB2C41 /* ZIPFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCD327732234595900FB2C41 /* ZIPFoundation.framework */; };
-		FCD327752234595900FB2C41 /* ZIPFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FCD327732234595900FB2C41 /* ZIPFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FCF1E7E22223CCA100081532 /* ThumbnailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF1E7E12223CCA100081532 /* ThumbnailProvider.swift */; };
 		FCF1E7E62223CCA100081532 /* ReadThumbnails.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FCF1E7DF2223CCA100081532 /* ReadThumbnails.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FCF1E7EC2223CF2100081532 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC10F8262223303600BA7636 /* Document.swift */; };
-		FCF4BE16223CD974008B9C83 /* ZIPFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCD327732234595900FB2C41 /* ZIPFoundation.framework */; };
-		FCFBC69C224A42690031843E /* XMLCoder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCA9136D2246A1EE0036F634 /* XMLCoder.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		FCA5BD372271B88A001E4EE5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FC84C3AD2222933A008F8F31 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FC84C3B42222933A008F8F31;
-			remoteInfo = Read;
-		};
 		FCF1E7E42223CCA100081532 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FC84C3AD2222933A008F8F31 /* Project object */;
@@ -52,8 +40,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				FCA9136F2246A1EE0036F634 /* XMLCoder.framework in Embed Frameworks */,
-				FCD327752234595900FB2C41 /* ZIPFoundation.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -76,6 +62,8 @@
 		FC10F8282223307900BA7636 /* DocumentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
 		FC10F82A2223308200BA7636 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		FC10F8362223CADF00BA7636 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
+		FC1BFD0423804EF300D9A760 /* Read.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Read.entitlements; sourceTree = "<group>"; };
+		FC1BFD0523804EF300D9A760 /* ReadThumbnails.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReadThumbnails.entitlements; sourceTree = "<group>"; };
 		FC84C3B52222933A008F8F31 /* Read.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Read.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC84C3B82222933A008F8F31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC84C3BA2222933A008F8F31 /* DocumentBrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBrowserViewController.swift; sourceTree = "<group>"; };
@@ -83,11 +71,6 @@
 		FC84C3C62222933C008F8F31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC84C3C82222933C008F8F31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC9DFA1822249D730020151B /* ePub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ePub.swift; sourceTree = "<group>"; };
-		FCA5BD322271B88A001E4EE5 /* epub.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = epub.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FCA5BD342271B88A001E4EE5 /* epub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = epub.swift; sourceTree = "<group>"; };
-		FCA5BD362271B88A001E4EE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FCA9136D2246A1EE0036F634 /* XMLCoder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XMLCoder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FCD327732234595900FB2C41 /* ZIPFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ZIPFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF1E7DF2223CCA100081532 /* ReadThumbnails.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ReadThumbnails.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF1E7E12223CCA100081532 /* ThumbnailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailProvider.swift; sourceTree = "<group>"; };
 		FCF1E7E32223CCA100081532 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -98,15 +81,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCA9136E2246A1EE0036F634 /* XMLCoder.framework in Frameworks */,
-				FCD327742234595900FB2C41 /* ZIPFoundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FCA5BD2F2271B88A001E4EE5 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				FC1BFD0323804EA400D9A760 /* XMLCoder in Frameworks */,
+				FC1BFD0023804E6600D9A760 /* ZIPFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,8 +90,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCFBC69C224A42690031843E /* XMLCoder.framework in Frameworks */,
-				FCF4BE16223CD974008B9C83 /* ZIPFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,11 +107,8 @@
 		FC84C3AC2222933A008F8F31 = {
 			isa = PBXGroup;
 			children = (
-				FCA9136D2246A1EE0036F634 /* XMLCoder.framework */,
-				FCD327732234595900FB2C41 /* ZIPFoundation.framework */,
 				FC84C3B72222933A008F8F31 /* Read */,
 				FCF1E7E02223CCA100081532 /* ReadThumbnails */,
-				FCA5BD332271B88A001E4EE5 /* epub */,
 				FC84C3B62222933A008F8F31 /* Products */,
 				AE91134C52B5C0172EA4E34A /* Frameworks */,
 			);
@@ -148,7 +119,6 @@
 			children = (
 				FC84C3B52222933A008F8F31 /* Read.app */,
 				FCF1E7DF2223CCA100081532 /* ReadThumbnails.appex */,
-				FCA5BD322271B88A001E4EE5 /* epub.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -156,6 +126,7 @@
 		FC84C3B72222933A008F8F31 /* Read */ = {
 			isa = PBXGroup;
 			children = (
+				FC1BFD0423804EF300D9A760 /* Read.entitlements */,
 				FC84C3B82222933A008F8F31 /* AppDelegate.swift */,
 				FC84C3BA2222933A008F8F31 /* DocumentBrowserViewController.swift */,
 				FC10F8282223307900BA7636 /* DocumentViewController.swift */,
@@ -169,19 +140,10 @@
 			path = Read;
 			sourceTree = "<group>";
 		};
-		FCA5BD332271B88A001E4EE5 /* epub */ = {
-			isa = PBXGroup;
-			children = (
-				FCA5BD342271B88A001E4EE5 /* epub.swift */,
-				FCA5BD362271B88A001E4EE5 /* Info.plist */,
-			);
-			name = epub;
-			path = "../../Library/Mobile Documents/com~apple~CloudDocs/Documents/Read/epub";
-			sourceTree = "<group>";
-		};
 		FCF1E7E02223CCA100081532 /* ReadThumbnails */ = {
 			isa = PBXGroup;
 			children = (
+				FC1BFD0523804EF300D9A760 /* ReadThumbnails.entitlements */,
 				FCF1E7E12223CCA100081532 /* ThumbnailProvider.swift */,
 				FCF1E7E32223CCA100081532 /* Info.plist */,
 			);
@@ -207,27 +169,13 @@
 				FCF1E7E52223CCA100081532 /* PBXTargetDependency */,
 			);
 			name = Read;
+			packageProductDependencies = (
+				FC1BFCFF23804E6600D9A760 /* ZIPFoundation */,
+				FC1BFD0223804EA400D9A760 /* XMLCoder */,
+			);
 			productName = Read;
 			productReference = FC84C3B52222933A008F8F31 /* Read.app */;
 			productType = "com.apple.product-type.application";
-		};
-		FCA5BD312271B88A001E4EE5 /* epub */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FCA5BD3B2271B88A001E4EE5 /* Build configuration list for PBXNativeTarget "epub" */;
-			buildPhases = (
-				FCA5BD2E2271B88A001E4EE5 /* Sources */,
-				FCA5BD2F2271B88A001E4EE5 /* Frameworks */,
-				FCA5BD302271B88A001E4EE5 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				FCA5BD382271B88A001E4EE5 /* PBXTargetDependency */,
-			);
-			name = epub;
-			productName = epub;
-			productReference = FCA5BD322271B88A001E4EE5 /* epub.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		FCF1E7DE2223CCA100081532 /* ReadThumbnails */ = {
 			isa = PBXNativeTarget;
@@ -259,10 +207,6 @@
 					FC84C3B42222933A008F8F31 = {
 						CreatedOnToolsVersion = 10.1;
 					};
-					FCA5BD312271B88A001E4EE5 = {
-						CreatedOnToolsVersion = 10.2;
-						TestTargetID = FC84C3B42222933A008F8F31;
-					};
 					FCF1E7DE2223CCA100081532 = {
 						CreatedOnToolsVersion = 10.1;
 					};
@@ -277,13 +221,16 @@
 				Base,
 			);
 			mainGroup = FC84C3AC2222933A008F8F31;
+			packageReferences = (
+				FC1BFCFE23804E6600D9A760 /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
+				FC1BFD0123804EA400D9A760 /* XCRemoteSwiftPackageReference "XMLCoder" */,
+			);
 			productRefGroup = FC84C3B62222933A008F8F31 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				FC84C3B42222933A008F8F31 /* Read */,
 				FCF1E7DE2223CCA100081532 /* ReadThumbnails */,
-				FCA5BD312271B88A001E4EE5 /* epub */,
 			);
 		};
 /* End PBXProject section */
@@ -296,13 +243,6 @@
 				FC10F82B2223308200BA7636 /* Main.storyboard in Resources */,
 				FC84C3C72222933C008F8F31 /* LaunchScreen.storyboard in Resources */,
 				FC84C3C42222933C008F8F31 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FCA5BD302271B88A001E4EE5 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,14 +268,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FCA5BD2E2271B88A001E4EE5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FCA5BD352271B88A001E4EE5 /* epub.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		FCF1E7DB2223CCA100081532 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -349,11 +281,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		FCA5BD382271B88A001E4EE5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FC84C3B42222933A008F8F31 /* Read */;
-			targetProxy = FCA5BD372271B88A001E4EE5 /* PBXContainerItemProxy */;
-		};
 		FCF1E7E52223CCA100081532 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = FCF1E7DE2223CCA100081532 /* ReadThumbnails */;
@@ -424,7 +351,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -480,7 +407,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -496,17 +423,21 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Read/Read.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 2D7T23VV7R;
 				INFOPLIST_FILE = Read/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = dk.manga.Read;
+				PRODUCT_BUNDLE_IDENTIFIER = app.inuk.Read;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -517,69 +448,34 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Read/Read.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 2D7T23VV7R;
 				INFOPLIST_FILE = Read/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = dk.manga.Read;
+				PRODUCT_BUNDLE_IDENTIFIER = app.inuk.Read;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		FCA5BD392271B88A001E4EE5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2D7T23VV7R;
-				INFOPLIST_FILE = epub/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.inuk.epub;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Read.app/Read";
-			};
-			name = Debug;
-		};
-		FCA5BD3A2271B88A001E4EE5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2D7T23VV7R;
-				INFOPLIST_FILE = epub/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.inuk.epub;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Read.app/Read";
 			};
 			name = Release;
 		};
 		FCF1E7E82223CCA100081532 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ReadThumbnails/ReadThumbnails.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 2D7T23VV7R;
 				INFOPLIST_FILE = ReadThumbnails/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
@@ -592,6 +488,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -600,8 +497,11 @@
 		FCF1E7E92223CCA100081532 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ReadThumbnails/ReadThumbnails.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 2D7T23VV7R;
 				INFOPLIST_FILE = ReadThumbnails/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
@@ -614,6 +514,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -640,15 +541,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FCA5BD3B2271B88A001E4EE5 /* Build configuration list for PBXNativeTarget "epub" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FCA5BD392271B88A001E4EE5 /* Debug */,
-				FCA5BD3A2271B88A001E4EE5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		FCF1E7E72223CCA100081532 /* Build configuration list for PBXNativeTarget "ReadThumbnails" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -659,6 +551,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FC1BFCFE23804E6600D9A760 /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/weichsel/ZIPFoundation/";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.9;
+			};
+		};
+		FC1BFD0123804EA400D9A760 /* XCRemoteSwiftPackageReference "XMLCoder" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MaxDesiatov/XMLCoder.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FC1BFCFF23804E6600D9A760 /* ZIPFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FC1BFCFE23804E6600D9A760 /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
+			productName = ZIPFoundation;
+		};
+		FC1BFD0223804EA400D9A760 /* XMLCoder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FC1BFD0123804EA400D9A760 /* XCRemoteSwiftPackageReference "XMLCoder" */;
+			productName = XMLCoder;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FC84C3AD2222933A008F8F31 /* Project object */;
 }

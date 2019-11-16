@@ -87,7 +87,7 @@ extension ePub: Collection{
     }
 }
 */
-// MAKR: - New ePub XML Parser
+// MARK: - New ePub XML Parser
 extension ePub {
     
     private func doXML() throws -> Void {
