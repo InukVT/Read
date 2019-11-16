@@ -19,6 +19,8 @@
 		FC84C3C42222933C008F8F31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC84C3C32222933C008F8F31 /* Assets.xcassets */; };
 		FC84C3C72222933C008F8F31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC84C3C52222933C008F8F31 /* LaunchScreen.storyboard */; };
 		FC8B9DB22227119D002FEA2A /* ePub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DFA1822249D730020151B /* ePub.swift */; };
+		FC90A7FB23809D0F00F28A15 /* QuickLookThumbnailing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC90A7F923809D0F00F28A15 /* QuickLookThumbnailing.framework */; };
+		FC90A7FC23809D1000F28A15 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC90A7FA23809D0F00F28A15 /* QuickLook.framework */; };
 		FC9DFA1922249D730020151B /* ePub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DFA1822249D730020151B /* ePub.swift */; };
 		FCF1E7E22223CCA100081532 /* ThumbnailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF1E7E12223CCA100081532 /* ThumbnailProvider.swift */; };
 		FCF1E7E62223CCA100081532 /* ReadThumbnails.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FCF1E7DF2223CCA100081532 /* ReadThumbnails.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -63,17 +65,16 @@
 		FC10F8262223303600BA7636 /* Document.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		FC10F8282223307900BA7636 /* DocumentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
 		FC10F82A2223308200BA7636 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		FC10F8362223CADF00BA7636 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
 		FC1BFD0423804EF300D9A760 /* Read.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Read.entitlements; sourceTree = "<group>"; };
 		FC1BFD0523804EF300D9A760 /* ReadThumbnails.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReadThumbnails.entitlements; sourceTree = "<group>"; };
-		FC57250A23808D07001A0E7F /* QuickLookThumbnailing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLookThumbnailing.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/QuickLookThumbnailing.framework; sourceTree = DEVELOPER_DIR; };
-		FC57250C23808D0F001A0E7F /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/QuickLook.framework; sourceTree = DEVELOPER_DIR; };
 		FC84C3B52222933A008F8F31 /* Read.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Read.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC84C3B82222933A008F8F31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC84C3BA2222933A008F8F31 /* DocumentBrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBrowserViewController.swift; sourceTree = "<group>"; };
 		FC84C3C32222933C008F8F31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC84C3C62222933C008F8F31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC84C3C82222933C008F8F31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC90A7F923809D0F00F28A15 /* QuickLookThumbnailing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLookThumbnailing.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/QuickLookThumbnailing.framework; sourceTree = DEVELOPER_DIR; };
+		FC90A7FA23809D0F00F28A15 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/QuickLook.framework; sourceTree = DEVELOPER_DIR; };
 		FC9DFA1822249D730020151B /* ePub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ePub.swift; sourceTree = "<group>"; };
 		FCF1E7DF2223CCA100081532 /* ReadThumbnails.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ReadThumbnails.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF1E7E12223CCA100081532 /* ThumbnailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailProvider.swift; sourceTree = "<group>"; };
@@ -94,6 +95,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC90A7FB23809D0F00F28A15 /* QuickLookThumbnailing.framework in Frameworks */,
+				FC90A7FC23809D1000F28A15 /* QuickLook.framework in Frameworks */,
 				FC57250723805BEA001A0E7F /* XMLCoder in Frameworks */,
 				FC57250923805BED001A0E7F /* ZIPFoundation in Frameworks */,
 			);
@@ -105,9 +108,8 @@
 		AE91134C52B5C0172EA4E34A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FC57250C23808D0F001A0E7F /* QuickLook.framework */,
-				FC57250A23808D07001A0E7F /* QuickLookThumbnailing.framework */,
-				FC10F8362223CADF00BA7636 /* QuickLook.framework */,
+				FC90A7FA23809D0F00F28A15 /* QuickLook.framework */,
+				FC90A7F923809D0F00F28A15 /* QuickLookThumbnailing.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
