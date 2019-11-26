@@ -8,7 +8,7 @@
 import Foundation
 import ZIPFoundation
 import XMLCoder
-import UIKit
+//wimport UIKit
 
 // MARK: - Book metadata
 /// ePub handler class
@@ -20,13 +20,13 @@ class ePub {
     private var coverLink: String?
     /// ePub metadata, use this to get information
     private(set) var meta: EpubMeta? = nil
-    private var manifest: Manifest? = nil
+    private(set) var manifest: Manifest? = nil
     private(set) var pages: [String]
     private var spine: Spine? = nil
     private(set) var OEPBS: String = ""
     
     private var needsCleanup: Bool
-    private var uncompressedBookURL: URL
+    private(set) var uncompressedBookURL: URL
     
     init(_ compressedBook: Document) throws {
         self.fileManager = FileManager()
@@ -38,13 +38,24 @@ class ePub {
         self.uncompressedBookURL = URL(fileURLWithPath: compressedBook.fileURL.path)
         unpackEpub()
         try doXML()
+        guard let spine = self.spine else {
+            throw XMLError.NotEpub
+        }
+        self.pages = spine.itemref.compactMap { page in
+            if (self.manifest?.item.contains { $0.name == page.idref } ?? false) {
+                return page.idref
+            } else {
+                return nil
+            }
+        }
+        /*
         for page in self.spine!.itemref {
             for item in self.manifest!.item{
                 if page.idref == item.name {
                     pages.append(item.link)
                 }
             }
-        }
+        }*/
     }
     
     deinit {
@@ -53,40 +64,7 @@ class ePub {
         }
     }
 }
-/*
-// MARK: - Collection, make the this struct behave like an array of strings
-extension ePub: Collection{
-    typealias Element = String
-    typealias Index = Int
-    
-    var startIndex: String {
-        return ""
-    }
-    
-    var endIndex: String {
-        return ""
-    }
-    
-    func index(after i: String) -> String {
-        return ""
-    }
-    
-    subscript(index: Index) -> Element{
-        if let pagesmeta = self.manifest{
-            if let spineitems = self.spine {
-                let page = spineitems.itemref[index].idref
-                    for item in pagesmeta {
-                        if item == page.name{
-                            return page.link!
-                        }
-                    }
-                
-            }
-        }
-        
-    }
-}
-*/
+
 // MARK: - New ePub XML Parser
 extension ePub {
     
@@ -111,7 +89,7 @@ extension ePub {
             let xmlData = try Data(contentsOf: uncompressedBookURL.appendingPathComponent((rootfileXML.rootfiles?.rootfile?.path!)!))
             let xmlString = String(data: xmlData, encoding: .utf8)
             var packageXML = package()
-                packageXML = try decoder.decode(package.self, from: (xmlString?.data(using: .utf8))!)
+            packageXML = try decoder.decode(package.self, from: xmlData)
             self.meta = packageXML.metadata
             self.manifest = packageXML.manifest
             self.spine = packageXML.spine
@@ -156,39 +134,6 @@ extension ePub {
         }
         
         return destinationURL
-    }
-}
-// MARK: - Cover extractor
-extension ePub {
-    /// Returns the cover image of a given book as `UIImage`
-    func extractCover(frame: CGRect) throws -> UIImage {
-       // return try unpackEpub{ workDir -> UIImage in
-            var coverName = ""
-            
-            if let items = self.meta?.meta {
-                for item in items {
-                    if item.name == "cover" {
-                        coverName = item.content!
-                    }
-                }
-            }
-            
-            if let items = self.manifest?.item {
-                for item in items {
-                    if item.name == coverName {
-                        var coverURL = uncompressedBookURL
-                        coverURL.appendPathComponent(self.OEPBS)
-                        coverURL.appendPathComponent(item.link)
-                        let coverData = try Data(contentsOf: coverURL)
-                        let cover = UIImage(data: coverData)!
-                        return cover
-                    }
-                }
-            }
-            
-            throw XMLError.coverNotFound
-        //}
-        
     }
 }
 
@@ -265,7 +210,7 @@ struct itemref: Codable {
 // MARK: - Custom errors
 enum XMLError: String, Error {
     case FileExists
-    case SomethingWentWrong
+    case SomethingWentWrong = "Something unown went wrong"
     case coverNotFound = "Cover not found"
     case NotEpub = "The given fils is not a valid epub file"
 }

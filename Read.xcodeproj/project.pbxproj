@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		FC10F8272223303600BA7636 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC10F8262223303600BA7636 /* Document.swift */; };
 		FC10F8292223307900BA7636 /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC10F8282223307900BA7636 /* DocumentViewController.swift */; };
-		FC10F82B2223308200BA7636 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC10F82A2223308200BA7636 /* Main.storyboard */; };
 		FC1BFD0023804E6600D9A760 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = FC1BFCFF23804E6600D9A760 /* ZIPFoundation */; };
 		FC1BFD0323804EA400D9A760 /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = FC1BFD0223804EA400D9A760 /* XMLCoder */; };
 		FC57250723805BEA001A0E7F /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = FC57250623805BEA001A0E7F /* XMLCoder */; };
@@ -22,6 +21,7 @@
 		FC90A7FB23809D0F00F28A15 /* QuickLookThumbnailing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC90A7F923809D0F00F28A15 /* QuickLookThumbnailing.framework */; };
 		FC90A7FC23809D1000F28A15 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC90A7FA23809D0F00F28A15 /* QuickLook.framework */; };
 		FC9DFA1922249D730020151B /* ePub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DFA1822249D730020151B /* ePub.swift */; };
+		FCAE836F238D9CF3005F5685 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCAE836E238D9CF3005F5685 /* Main.storyboard */; };
 		FCF1E7E22223CCA100081532 /* ThumbnailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF1E7E12223CCA100081532 /* ThumbnailProvider.swift */; };
 		FCF1E7E62223CCA100081532 /* ReadThumbnails.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FCF1E7DF2223CCA100081532 /* ReadThumbnails.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FCF1E7EC2223CF2100081532 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC10F8262223303600BA7636 /* Document.swift */; };
@@ -64,7 +64,6 @@
 /* Begin PBXFileReference section */
 		FC10F8262223303600BA7636 /* Document.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		FC10F8282223307900BA7636 /* DocumentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
-		FC10F82A2223308200BA7636 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		FC1BFD0423804EF300D9A760 /* Read.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Read.entitlements; sourceTree = "<group>"; };
 		FC1BFD0523804EF300D9A760 /* ReadThumbnails.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReadThumbnails.entitlements; sourceTree = "<group>"; };
 		FC84C3B52222933A008F8F31 /* Read.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Read.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +75,7 @@
 		FC90A7F923809D0F00F28A15 /* QuickLookThumbnailing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLookThumbnailing.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/QuickLookThumbnailing.framework; sourceTree = DEVELOPER_DIR; };
 		FC90A7FA23809D0F00F28A15 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/QuickLook.framework; sourceTree = DEVELOPER_DIR; };
 		FC9DFA1822249D730020151B /* ePub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ePub.swift; sourceTree = "<group>"; };
+		FCAE836E238D9CF3005F5685 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = ../../../.Trash/Main.storyboard; sourceTree = "<group>"; };
 		FCF1E7DF2223CCA100081532 /* ReadThumbnails.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ReadThumbnails.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF1E7E12223CCA100081532 /* ThumbnailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailProvider.swift; sourceTree = "<group>"; };
 		FCF1E7E32223CCA100081532 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -141,7 +141,7 @@
 				FC84C3BA2222933A008F8F31 /* DocumentBrowserViewController.swift */,
 				FC10F8282223307900BA7636 /* DocumentViewController.swift */,
 				FC10F8262223303600BA7636 /* Document.swift */,
-				FC10F82A2223308200BA7636 /* Main.storyboard */,
+				FCAE836E238D9CF3005F5685 /* Main.storyboard */,
 				FC84C3C32222933C008F8F31 /* Assets.xcassets */,
 				FC84C3C52222933C008F8F31 /* LaunchScreen.storyboard */,
 				FC84C3C82222933C008F8F31 /* Info.plist */,
@@ -254,7 +254,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC10F82B2223308200BA7636 /* Main.storyboard in Resources */,
+				FCAE836F238D9CF3005F5685 /* Main.storyboard in Resources */,
 				FC84C3C72222933C008F8F31 /* LaunchScreen.storyboard in Resources */,
 				FC84C3C42222933C008F8F31 /* Assets.xcassets in Resources */,
 			);
@@ -445,7 +445,7 @@
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 2D7T23VV7R;
 				INFOPLIST_FILE = Read/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -470,7 +470,7 @@
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 2D7T23VV7R;
 				INFOPLIST_FILE = Read/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
