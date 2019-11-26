@@ -21,7 +21,8 @@
 		FC90A7FB23809D0F00F28A15 /* QuickLookThumbnailing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC90A7F923809D0F00F28A15 /* QuickLookThumbnailing.framework */; };
 		FC90A7FC23809D1000F28A15 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC90A7FA23809D0F00F28A15 /* QuickLook.framework */; };
 		FC9DFA1922249D730020151B /* ePub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DFA1822249D730020151B /* ePub.swift */; };
-		FCAE836F238D9CF3005F5685 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCAE836E238D9CF3005F5685 /* Main.storyboard */; };
+		FCAE8371238DCAA4005F5685 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCAE8370238DCAA4005F5685 /* Main.storyboard */; };
+		FCAE8372238DCAA4005F5685 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCAE8370238DCAA4005F5685 /* Main.storyboard */; };
 		FCF1E7E22223CCA100081532 /* ThumbnailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF1E7E12223CCA100081532 /* ThumbnailProvider.swift */; };
 		FCF1E7E62223CCA100081532 /* ReadThumbnails.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FCF1E7DF2223CCA100081532 /* ReadThumbnails.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FCF1E7EC2223CF2100081532 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC10F8262223303600BA7636 /* Document.swift */; };
@@ -75,7 +76,7 @@
 		FC90A7F923809D0F00F28A15 /* QuickLookThumbnailing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLookThumbnailing.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/QuickLookThumbnailing.framework; sourceTree = DEVELOPER_DIR; };
 		FC90A7FA23809D0F00F28A15 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/QuickLook.framework; sourceTree = DEVELOPER_DIR; };
 		FC9DFA1822249D730020151B /* ePub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ePub.swift; sourceTree = "<group>"; };
-		FCAE836E238D9CF3005F5685 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = ../../../.Trash/Main.storyboard; sourceTree = "<group>"; };
+		FCAE8370238DCAA4005F5685 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		FCF1E7DF2223CCA100081532 /* ReadThumbnails.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ReadThumbnails.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF1E7E12223CCA100081532 /* ThumbnailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailProvider.swift; sourceTree = "<group>"; };
 		FCF1E7E32223CCA100081532 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -141,7 +142,7 @@
 				FC84C3BA2222933A008F8F31 /* DocumentBrowserViewController.swift */,
 				FC10F8282223307900BA7636 /* DocumentViewController.swift */,
 				FC10F8262223303600BA7636 /* Document.swift */,
-				FCAE836E238D9CF3005F5685 /* Main.storyboard */,
+				FCAE8370238DCAA4005F5685 /* Main.storyboard */,
 				FC84C3C32222933C008F8F31 /* Assets.xcassets */,
 				FC84C3C52222933C008F8F31 /* LaunchScreen.storyboard */,
 				FC84C3C82222933C008F8F31 /* Info.plist */,
@@ -254,9 +255,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCAE836F238D9CF3005F5685 /* Main.storyboard in Resources */,
 				FC84C3C72222933C008F8F31 /* LaunchScreen.storyboard in Resources */,
 				FC84C3C42222933C008F8F31 /* Assets.xcassets in Resources */,
+				FCAE8371238DCAA4005F5685 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,6 +265,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCAE8372238DCAA4005F5685 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
