@@ -8,6 +8,8 @@
 
 import UIKit
 import QuickLook
+import BookKit
+import BookView
 
 class ThumbnailProvider: QLThumbnailProvider {
    override func provideThumbnail(for request: QLFileThumbnailRequest, _ handler: @escaping (QLThumbnailReply?, Error?) -> Void) {
@@ -38,19 +40,10 @@ class ThumbnailProvider: QLThumbnailProvider {
         
         let document = Document(fileURL: fileURL)
         let openingSemaphore = DispatchSemaphore(value: 0)
-        var openingSuccess = false
         document.open(completionHandler: { (success) in
-            openingSuccess = success
             openingSemaphore.signal()
         })
         openingSemaphore.wait()
-        
-
-        guard openingSuccess else { return false }
-       /* let documentFile = DocumentViewController()
-        documentFile.document = document
-        documentFile.thumb().draw(in: frame)
-        */
         
         let book = try? ePub(document)
         let cover = try? book?.extractCover(frame: frame)
@@ -68,39 +61,5 @@ class ThumbnailProvider: QLThumbnailProvider {
         closingSemaphore.wait()
         
         return true
-    }
-}
-
-// MARK: - Cover extractor
-extension ePub {
-    /// Returns the cover image of a given book as `UIImage`
-    func extractCover(frame: CGRect) throws -> UIImage {
-       // return try unpackEpub{ workDir -> UIImage in
-            var coverName = ""
-            
-            if let items = self.meta?.meta {
-                for item in items {
-                    if item.name == "cover" {
-                        coverName = item.content!
-                    }
-                }
-            }
-            
-            if let items = self.manifest?.item {
-                for item in items {
-                    if item.name == coverName {
-                        var coverURL = uncompressedBookURL
-                        coverURL.appendPathComponent(self.OEPBS)
-                        coverURL.appendPathComponent(item.link)
-                        let coverData = try Data(contentsOf: coverURL)
-                        let cover = UIImage(data: coverData)!
-                        return cover
-                    }
-                }
-            }
-            
-            throw XMLError.coverNotFound
-        //}
-        
     }
 }

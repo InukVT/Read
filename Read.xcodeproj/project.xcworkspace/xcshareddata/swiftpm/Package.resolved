@@ -5,18 +5,18 @@
         "package": "BookKit",
         "repositoryURL": "git@github.com:Human-Entertainment/BookKit.git",
         "state": {
-          "branch": "master",
-          "revision": "dee80fcbda411555b3b2dc05f5dc69968df49617",
-          "version": null
+          "branch": null,
+          "revision": "c77bc57f1fe1d2fa4172fd91164f8655cfe5a3ea",
+          "version": "0.0.2"
         }
       },
       {
         "package": "XMLCoder",
         "repositoryURL": "https://github.com/MaxDesiatov/XMLCoder.git",
         "state": {
-          "branch": "master",
-          "revision": "0eba4c609c65696ab7db534cb84579434028dfc6",
-          "version": null
+          "branch": null,
+          "revision": "96d210ee78d8b1d38870f81ff48d8e8ab806fffa",
+          "version": "0.9.0"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/weichsel/ZIPFoundation/",
         "state": {
           "branch": null,
-          "revision": "edbeaa39b426e54702194b0a601342322f01e400",
-          "version": "0.9.9"
+          "revision": "3f38d518c5e41f1cf25ff6a1d28c46db5e79a0b9",
+          "version": "0.9.10"
         }
       }
     ]

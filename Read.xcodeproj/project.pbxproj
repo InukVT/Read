@@ -9,11 +9,9 @@
 /* Begin PBXBuildFile section */
 		FC10F8272223303600BA7636 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC10F8262223303600BA7636 /* Document.swift */; };
 		FC10F8292223307900BA7636 /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC10F8282223307900BA7636 /* DocumentViewController.swift */; };
-		FC1BFD0023804E6600D9A760 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = FC1BFCFF23804E6600D9A760 /* ZIPFoundation */; };
-		FC1BFD0323804EA400D9A760 /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = FC1BFD0223804EA400D9A760 /* XMLCoder */; };
-		FC57250723805BEA001A0E7F /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = FC57250623805BEA001A0E7F /* XMLCoder */; };
-		FC57250923805BED001A0E7F /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = FC57250823805BED001A0E7F /* ZIPFoundation */; };
+		FC11F07C239ABD44008AF776 /* BookView in Frameworks */ = {isa = PBXBuildFile; productRef = FC11F07B239ABD44008AF776 /* BookView */; };
 		FC60C598239AB1EB000ED85B /* BookKit in Frameworks */ = {isa = PBXBuildFile; productRef = FC60C597239AB1EB000ED85B /* BookKit */; };
+		FC60C59A239AB52A000ED85B /* BookKit in Frameworks */ = {isa = PBXBuildFile; productRef = FC60C599239AB52A000ED85B /* BookKit */; };
 		FC84C3B92222933A008F8F31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC84C3B82222933A008F8F31 /* AppDelegate.swift */; };
 		FC84C3BB2222933A008F8F31 /* DocumentBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC84C3BA2222933A008F8F31 /* DocumentBrowserViewController.swift */; };
 		FC84C3C42222933C008F8F31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC84C3C32222933C008F8F31 /* Assets.xcassets */; };
@@ -86,8 +84,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC60C598239AB1EB000ED85B /* BookKit in Frameworks */,
-				FC1BFD0323804EA400D9A760 /* XMLCoder in Frameworks */,
-				FC1BFD0023804E6600D9A760 /* ZIPFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,9 +92,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC90A7FB23809D0F00F28A15 /* QuickLookThumbnailing.framework in Frameworks */,
+				FC60C59A239AB52A000ED85B /* BookKit in Frameworks */,
+				FC11F07C239ABD44008AF776 /* BookView in Frameworks */,
 				FC90A7FC23809D1000F28A15 /* QuickLook.framework in Frameworks */,
-				FC57250723805BEA001A0E7F /* XMLCoder in Frameworks */,
-				FC57250923805BED001A0E7F /* ZIPFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,8 +175,6 @@
 			);
 			name = Read;
 			packageProductDependencies = (
-				FC1BFCFF23804E6600D9A760 /* ZIPFoundation */,
-				FC1BFD0223804EA400D9A760 /* XMLCoder */,
 				FC60C597239AB1EB000ED85B /* BookKit */,
 			);
 			productName = Read;
@@ -201,8 +195,8 @@
 			);
 			name = ReadThumbnails;
 			packageProductDependencies = (
-				FC57250623805BEA001A0E7F /* XMLCoder */,
-				FC57250823805BED001A0E7F /* ZIPFoundation */,
+				FC60C599239AB52A000ED85B /* BookKit */,
+				FC11F07B239ABD44008AF776 /* BookView */,
 			);
 			productName = ReadThumbnails;
 			productReference = FCF1E7DF2223CCA100081532 /* ReadThumbnails.appex */;
@@ -236,8 +230,6 @@
 			);
 			mainGroup = FC84C3AC2222933A008F8F31;
 			packageReferences = (
-				FC1BFCFE23804E6600D9A760 /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
-				FC1BFD0123804EA400D9A760 /* XCRemoteSwiftPackageReference "XMLCoder" */,
 				FC60C596239AB1EB000ED85B /* XCRemoteSwiftPackageReference "BookKit" */,
 			);
 			productRefGroup = FC84C3B62222933A008F8F31 /* Products */;
@@ -569,54 +561,28 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		FC1BFCFE23804E6600D9A760 /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/weichsel/ZIPFoundation/";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.9.9;
-			};
-		};
-		FC1BFD0123804EA400D9A760 /* XCRemoteSwiftPackageReference "XMLCoder" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/MaxDesiatov/XMLCoder.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		FC60C596239AB1EB000ED85B /* XCRemoteSwiftPackageReference "BookKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:Human-Entertainment/BookKit.git";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		FC1BFCFF23804E6600D9A760 /* ZIPFoundation */ = {
+		FC11F07B239ABD44008AF776 /* BookView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FC1BFCFE23804E6600D9A760 /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
-			productName = ZIPFoundation;
-		};
-		FC1BFD0223804EA400D9A760 /* XMLCoder */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FC1BFD0123804EA400D9A760 /* XCRemoteSwiftPackageReference "XMLCoder" */;
-			productName = XMLCoder;
-		};
-		FC57250623805BEA001A0E7F /* XMLCoder */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FC1BFD0123804EA400D9A760 /* XCRemoteSwiftPackageReference "XMLCoder" */;
-			productName = XMLCoder;
-		};
-		FC57250823805BED001A0E7F /* ZIPFoundation */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FC1BFCFE23804E6600D9A760 /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
-			productName = ZIPFoundation;
+			package = FC60C596239AB1EB000ED85B /* XCRemoteSwiftPackageReference "BookKit" */;
+			productName = BookView;
 		};
 		FC60C597239AB1EB000ED85B /* BookKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FC60C596239AB1EB000ED85B /* XCRemoteSwiftPackageReference "BookKit" */;
+			productName = BookKit;
+		};
+		FC60C599239AB52A000ED85B /* BookKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FC60C596239AB1EB000ED85B /* XCRemoteSwiftPackageReference "BookKit" */;
 			productName = BookKit;
