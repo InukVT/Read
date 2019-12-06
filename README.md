@@ -1,11 +1,11 @@
 # About
 The Read app (Title WIP) is aiming to be a simple for beginners powerful for powerusers type of reader app. It's following the kiss philosophy by _only_ being a reader app and doing that well.
 # Timeline
-- Get epub to work
-- Progression preservation
-- CBZ and CBR is second priority
-- Get PDF to work
+- CBZ format, get that working, maybe even write a protocol
+- Extend CBZ to support CBR in an external dependency?
 - Release to TestFlight
+- Get ePub working
+- Get PDF to work
 - Look into highlighting and note taking, this can potentially break **KISS**
 - TestFlight feedback
 - Work on ebook manager app, inspired by Calibre Companion, hopefully supporting calibre
