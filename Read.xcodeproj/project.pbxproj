@@ -13,14 +13,13 @@
 		FC1BFD0323804EA400D9A760 /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = FC1BFD0223804EA400D9A760 /* XMLCoder */; };
 		FC57250723805BEA001A0E7F /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = FC57250623805BEA001A0E7F /* XMLCoder */; };
 		FC57250923805BED001A0E7F /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = FC57250823805BED001A0E7F /* ZIPFoundation */; };
+		FC60C598239AB1EB000ED85B /* BookKit in Frameworks */ = {isa = PBXBuildFile; productRef = FC60C597239AB1EB000ED85B /* BookKit */; };
 		FC84C3B92222933A008F8F31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC84C3B82222933A008F8F31 /* AppDelegate.swift */; };
 		FC84C3BB2222933A008F8F31 /* DocumentBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC84C3BA2222933A008F8F31 /* DocumentBrowserViewController.swift */; };
 		FC84C3C42222933C008F8F31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC84C3C32222933C008F8F31 /* Assets.xcassets */; };
 		FC84C3C72222933C008F8F31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC84C3C52222933C008F8F31 /* LaunchScreen.storyboard */; };
-		FC8B9DB22227119D002FEA2A /* ePub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DFA1822249D730020151B /* ePub.swift */; };
 		FC90A7FB23809D0F00F28A15 /* QuickLookThumbnailing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC90A7F923809D0F00F28A15 /* QuickLookThumbnailing.framework */; };
 		FC90A7FC23809D1000F28A15 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC90A7FA23809D0F00F28A15 /* QuickLook.framework */; };
-		FC9DFA1922249D730020151B /* ePub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DFA1822249D730020151B /* ePub.swift */; };
 		FCAE8371238DCAA4005F5685 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCAE8370238DCAA4005F5685 /* Main.storyboard */; };
 		FCAE8372238DCAA4005F5685 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCAE8370238DCAA4005F5685 /* Main.storyboard */; };
 		FCF1E7E22223CCA100081532 /* ThumbnailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF1E7E12223CCA100081532 /* ThumbnailProvider.swift */; };
@@ -75,7 +74,6 @@
 		FC84C3C82222933C008F8F31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC90A7F923809D0F00F28A15 /* QuickLookThumbnailing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLookThumbnailing.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/QuickLookThumbnailing.framework; sourceTree = DEVELOPER_DIR; };
 		FC90A7FA23809D0F00F28A15 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/QuickLook.framework; sourceTree = DEVELOPER_DIR; };
-		FC9DFA1822249D730020151B /* ePub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ePub.swift; sourceTree = "<group>"; };
 		FCAE8370238DCAA4005F5685 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		FCF1E7DF2223CCA100081532 /* ReadThumbnails.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ReadThumbnails.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF1E7E12223CCA100081532 /* ThumbnailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailProvider.swift; sourceTree = "<group>"; };
@@ -87,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC60C598239AB1EB000ED85B /* BookKit in Frameworks */,
 				FC1BFD0323804EA400D9A760 /* XMLCoder in Frameworks */,
 				FC1BFD0023804E6600D9A760 /* ZIPFoundation in Frameworks */,
 			);
@@ -146,7 +145,6 @@
 				FC84C3C32222933C008F8F31 /* Assets.xcassets */,
 				FC84C3C52222933C008F8F31 /* LaunchScreen.storyboard */,
 				FC84C3C82222933C008F8F31 /* Info.plist */,
-				FC9DFA1822249D730020151B /* ePub.swift */,
 			);
 			path = Read;
 			sourceTree = "<group>";
@@ -183,6 +181,7 @@
 			packageProductDependencies = (
 				FC1BFCFF23804E6600D9A760 /* ZIPFoundation */,
 				FC1BFD0223804EA400D9A760 /* XMLCoder */,
+				FC60C597239AB1EB000ED85B /* BookKit */,
 			);
 			productName = Read;
 			productReference = FC84C3B52222933A008F8F31 /* Read.app */;
@@ -239,6 +238,7 @@
 			packageReferences = (
 				FC1BFCFE23804E6600D9A760 /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
 				FC1BFD0123804EA400D9A760 /* XCRemoteSwiftPackageReference "XMLCoder" */,
+				FC60C596239AB1EB000ED85B /* XCRemoteSwiftPackageReference "BookKit" */,
 			);
 			productRefGroup = FC84C3B62222933A008F8F31 /* Products */;
 			projectDirPath = "";
@@ -277,7 +277,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC84C3BB2222933A008F8F31 /* DocumentBrowserViewController.swift in Sources */,
-				FC9DFA1922249D730020151B /* ePub.swift in Sources */,
 				FC10F8292223307900BA7636 /* DocumentViewController.swift in Sources */,
 				FC84C3B92222933A008F8F31 /* AppDelegate.swift in Sources */,
 				FC10F8272223303600BA7636 /* Document.swift in Sources */,
@@ -289,7 +288,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCF1E7E22223CCA100081532 /* ThumbnailProvider.swift in Sources */,
-				FC8B9DB22227119D002FEA2A /* ePub.swift in Sources */,
 				FCF1E7EC2223CF2100081532 /* Document.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -587,6 +585,14 @@
 				kind = branch;
 			};
 		};
+		FC60C596239AB1EB000ED85B /* XCRemoteSwiftPackageReference "BookKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:Human-Entertainment/BookKit.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -609,6 +615,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FC1BFCFE23804E6600D9A760 /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
 			productName = ZIPFoundation;
+		};
+		FC60C597239AB1EB000ED85B /* BookKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FC60C596239AB1EB000ED85B /* XCRemoteSwiftPackageReference "BookKit" */;
+			productName = BookKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

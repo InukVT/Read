@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "BookKit",
+        "repositoryURL": "git@github.com:Human-Entertainment/BookKit.git",
+        "state": {
+          "branch": "master",
+          "revision": "dee80fcbda411555b3b2dc05f5dc69968df49617",
+          "version": null
+        }
+      },
+      {
         "package": "XMLCoder",
         "repositoryURL": "https://github.com/MaxDesiatov/XMLCoder.git",
         "state": {
