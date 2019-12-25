@@ -1,7 +1,8 @@
 # About
 The Read app (Title WIP) is aiming to be a simple for beginners powerful for powerusers type of reader app. It's following the kiss philosophy by _only_ being a reader app and doing that well.
 # Timeline
-- CBZ format, get that working, maybe even write a protocol
+- CBZ format, get that working
+- write a `protocol Book` and `protocol BookView: View` for generic book formats, so it's easier to add later
 - Extend CBZ to support CBR in an external dependency?
 - Release to TestFlight
 - Get ePub working
