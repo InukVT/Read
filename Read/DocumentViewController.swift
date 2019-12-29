@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import BookKit
+import EpubKit
 
 class DocumentViewController: UIViewController {
     
@@ -24,6 +26,7 @@ class DocumentViewController: UIViewController {
                     print(error)
                 }
             }
+            return nil
         }
     }
 

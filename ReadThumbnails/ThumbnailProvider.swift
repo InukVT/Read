@@ -9,7 +9,7 @@
 import UIKit
 import QuickLook
 import BookKit
-import BookView
+import EpubKit
 
 class ThumbnailProvider: QLThumbnailProvider {
    override func provideThumbnail(for request: QLFileThumbnailRequest, _ handler: @escaping (QLThumbnailReply?, Error?) -> Void) {
@@ -39,12 +39,6 @@ class ThumbnailProvider: QLThumbnailProvider {
         frame.size = contextSize
         
         let document = Document(fileURL: fileURL)
-        let openingSemaphore = DispatchSemaphore(value: 0)
-        document.open(completionHandler: { (success) in
-            openingSemaphore.signal()
-        })
-        openingSemaphore.wait()
-        
         let book = try? ePub(document)
         let cover = try? book?.extractCover(frame: frame)
         if let drawCover = cover {
@@ -53,12 +47,6 @@ class ThumbnailProvider: QLThumbnailProvider {
             UIImage(named: "image")?.draw(in: frame)
         }
         
-        
-        let closingSemaphore = DispatchSemaphore(value: 0)
-        document.close { (_) in
-            closingSemaphore.signal()
-        }
-        closingSemaphore.wait()
         
         return true
     }

@@ -6,8 +6,8 @@
         "repositoryURL": "git@github.com:Human-Entertainment/BookKit.git",
         "state": {
           "branch": null,
-          "revision": "c77bc57f1fe1d2fa4172fd91164f8655cfe5a3ea",
-          "version": "0.0.2"
+          "revision": "798e6c5f577d12bcd260e1dd75f3957863cdc244",
+          "version": "0.0.4-alpha.8"
         }
       },
       {
@@ -21,7 +21,7 @@
       },
       {
         "package": "ZIPFoundation",
-        "repositoryURL": "https://github.com/weichsel/ZIPFoundation/",
+        "repositoryURL": "https://github.com/weichsel/ZIPFoundation.git",
         "state": {
           "branch": null,
           "revision": "3f38d518c5e41f1cf25ff6a1d28c46db5e79a0b9",
