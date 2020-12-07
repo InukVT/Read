@@ -1,10 +1,20 @@
 import SwiftUI
+import Combine
 import WebKit
 
 final class WebViewWrapper: UIViewRepresentable
 {
+    func userContentController(
+        _ userContentController: WKUserContentController,
+        didReceive message: WKScriptMessage
+    ) {
+        print(message.name)
+    }
+    
     @ObservedObject
     var state: WebViewStateModel
+    
+    var cancallable = [Cancellable]()
     
     var request: URLRequest? = nil
     var webView: WKWebView
@@ -13,6 +23,7 @@ final class WebViewWrapper: UIViewRepresentable
         state: WebViewStateModel
     )
     {
+        
         self.state = state
         let bundle = Bundle.main
         if let url = bundle.url(
@@ -24,28 +35,58 @@ final class WebViewWrapper: UIViewRepresentable
             print("Failed to load bundle resource in \(bundle.bundlePath)")
         }
         
-        let view = WKWebView()
+        let contentController = WKUserContentController()
+        
+        
+        let configuration = WKWebViewConfiguration()
+        
+        
+        self.webView = WKWebView(
+            frame: .zero,
+            configuration: configuration
+        )
+        
+        configuration.userContentController = contentController
         if let request = request {
-            view.load(request)
+            webView.load(request)
         }
-        self.webView = view
-        load(book: state.url)
+        self.cancallable.append(
+            webView.publisher(for: \.isLoading)
+            .sink{ [weak self] isLoading in
+                guard !isLoading else { return }
+                
+                print("Has finished loading")
+                self?.load(book: state.url)
+            }
+        )
     }
     
-    func load(book url: URL)
+    private func load(book url: URL)
     {
-        print("Loading \(url)")
-        webView.evaluateJavaScript(
+        webView.callAsyncJavaScript(
             """
-            let book = ePub("\(url)", {})
+            let book = new Book(url, {})
             book.renderTo("viewer", {
                 ignoreClass: "annotator-hl",
                 width: "100%",
                 height: "100%"
-            });
+            })
             """,
+            arguments: ["url": url.absoluteString],
             in: nil,
-            in: .page)
+            in: .page,
+            completionHandler: loadCompletion
+        )
+    }
+    
+    private func loadCompletion(result: Result<Any, Error>)
+    {
+        switch result {
+            case .success(let any):
+                print(any)
+            case .failure(let error):
+                print("Failed with \(error)")
+        }
     }
     
     func makeUIView(context: Context) -> WKWebView {
