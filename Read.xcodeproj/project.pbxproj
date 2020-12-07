@@ -7,16 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FC10F8292223307900BA7636 /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC10F8282223307900BA7636 /* DocumentViewController.swift */; };
 		FC60C598239AB1EB000ED85B /* BookKit in Frameworks */ = {isa = PBXBuildFile; productRef = FC60C597239AB1EB000ED85B /* BookKit */; };
-		FC84C3B92222933A008F8F31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC84C3B82222933A008F8F31 /* AppDelegate.swift */; };
-		FC84C3BB2222933A008F8F31 /* DocumentBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC84C3BA2222933A008F8F31 /* DocumentBrowserViewController.swift */; };
+		FC6F8312257E6E24003D252F /* Read.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6F8311257E6E24003D252F /* Read.swift */; };
+		FC6F8318257E7083003D252F /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6F8317257E7083003D252F /* Book.swift */; };
+		FC6F831C257E72EC003D252F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6F831B257E72EC003D252F /* ContentView.swift */; };
+		FC6F831F257E7504003D252F /* BookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6F831E257E7504003D252F /* BookView.swift */; };
+		FC6F8323257E786F003D252F /* WKWebViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6F8322257E786F003D252F /* WKWebViewWrapper.swift */; };
+		FC6F8327257E7A4E003D252F /* reader in Resources */ = {isa = PBXBuildFile; fileRef = FC6F8326257E7A4E003D252F /* reader */; };
 		FC84C3C42222933C008F8F31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC84C3C32222933C008F8F31 /* Assets.xcassets */; };
 		FC84C3C72222933C008F8F31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC84C3C52222933C008F8F31 /* LaunchScreen.storyboard */; };
 		FC90A7FB23809D0F00F28A15 /* QuickLookThumbnailing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC90A7F923809D0F00F28A15 /* QuickLookThumbnailing.framework */; };
 		FC90A7FC23809D1000F28A15 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC90A7FA23809D0F00F28A15 /* QuickLook.framework */; };
-		FCAE8371238DCAA4005F5685 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCAE8370238DCAA4005F5685 /* Main.storyboard */; };
-		FCAE8372238DCAA4005F5685 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCAE8370238DCAA4005F5685 /* Main.storyboard */; };
 		FCF1E7E22223CCA100081532 /* ThumbnailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF1E7E12223CCA100081532 /* ThumbnailProvider.swift */; };
 		FCF1E7E62223CCA100081532 /* ReadThumbnails.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FCF1E7DF2223CCA100081532 /* ReadThumbnails.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FCFEE37523B93ECC000CB310 /* BookKit in Frameworks */ = {isa = PBXBuildFile; productRef = FCFEE37423B93ECC000CB310 /* BookKit */; };
@@ -59,18 +60,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		FC10F8282223307900BA7636 /* DocumentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
 		FC1BFD0423804EF300D9A760 /* Read.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Read.entitlements; sourceTree = "<group>"; };
 		FC1BFD0523804EF300D9A760 /* ReadThumbnails.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReadThumbnails.entitlements; sourceTree = "<group>"; };
+		FC6F8311257E6E24003D252F /* Read.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Read.swift; sourceTree = "<group>"; };
+		FC6F8317257E7083003D252F /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		FC6F831B257E72EC003D252F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FC6F831E257E7504003D252F /* BookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookView.swift; sourceTree = "<group>"; };
+		FC6F8322257E786F003D252F /* WKWebViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebViewWrapper.swift; sourceTree = "<group>"; };
+		FC6F8326257E7A4E003D252F /* reader */ = {isa = PBXFileReference; lastKnownFileType = folder; name = reader; path = "../../epubjs-reader/reader"; sourceTree = "<group>"; };
 		FC84C3B52222933A008F8F31 /* Read.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Read.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		FC84C3B82222933A008F8F31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FC84C3BA2222933A008F8F31 /* DocumentBrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBrowserViewController.swift; sourceTree = "<group>"; };
 		FC84C3C32222933C008F8F31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC84C3C62222933C008F8F31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC84C3C82222933C008F8F31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC90A7F923809D0F00F28A15 /* QuickLookThumbnailing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLookThumbnailing.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/QuickLookThumbnailing.framework; sourceTree = DEVELOPER_DIR; };
 		FC90A7FA23809D0F00F28A15 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/QuickLook.framework; sourceTree = DEVELOPER_DIR; };
-		FCAE8370238DCAA4005F5685 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		FCF1E7DF2223CCA100081532 /* ReadThumbnails.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ReadThumbnails.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF1E7E12223CCA100081532 /* ThumbnailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailProvider.swift; sourceTree = "<group>"; };
 		FCF1E7E32223CCA100081532 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -109,6 +112,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FC6F8321257E785F003D252F /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				FC6F8322257E786F003D252F /* WKWebViewWrapper.swift */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
 		FC84C3AC2222933A008F8F31 = {
 			isa = PBXGroup;
 			children = (
@@ -131,14 +142,16 @@
 		FC84C3B72222933A008F8F31 /* Read */ = {
 			isa = PBXGroup;
 			children = (
+				FC6F8326257E7A4E003D252F /* reader */,
+				FC6F8321257E785F003D252F /* iOS */,
 				FC1BFD0423804EF300D9A760 /* Read.entitlements */,
-				FC84C3B82222933A008F8F31 /* AppDelegate.swift */,
-				FC84C3BA2222933A008F8F31 /* DocumentBrowserViewController.swift */,
-				FC10F8282223307900BA7636 /* DocumentViewController.swift */,
-				FCAE8370238DCAA4005F5685 /* Main.storyboard */,
 				FC84C3C32222933C008F8F31 /* Assets.xcassets */,
 				FC84C3C52222933C008F8F31 /* LaunchScreen.storyboard */,
 				FC84C3C82222933C008F8F31 /* Info.plist */,
+				FC6F8311257E6E24003D252F /* Read.swift */,
+				FC6F8317257E7083003D252F /* Book.swift */,
+				FC6F831B257E72EC003D252F /* ContentView.swift */,
+				FC6F831E257E7504003D252F /* BookView.swift */,
 			);
 			path = Read;
 			sourceTree = "<group>";
@@ -207,6 +220,9 @@
 		FC84C3AD2222933A008F8F31 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Bastian Inuk Christensen";
@@ -246,9 +262,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC6F8327257E7A4E003D252F /* reader in Resources */,
 				FC84C3C72222933C008F8F31 /* LaunchScreen.storyboard in Resources */,
 				FC84C3C42222933C008F8F31 /* Assets.xcassets in Resources */,
-				FCAE8371238DCAA4005F5685 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,7 +272,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCAE8372238DCAA4005F5685 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,9 +282,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC84C3BB2222933A008F8F31 /* DocumentBrowserViewController.swift in Sources */,
-				FC10F8292223307900BA7636 /* DocumentViewController.swift in Sources */,
-				FC84C3B92222933A008F8F31 /* AppDelegate.swift in Sources */,
+				FC6F8312257E6E24003D252F /* Read.swift in Sources */,
+				FC6F8318257E7083003D252F /* Book.swift in Sources */,
+				FC6F8323257E786F003D252F /* WKWebViewWrapper.swift in Sources */,
+				FC6F831C257E72EC003D252F /* ContentView.swift in Sources */,
+				FC6F831F257E7504003D252F /* BookView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,10 +448,9 @@
 				CODE_SIGN_ENTITLEMENTS = Read/Read.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 2D7T23VV7R;
 				INFOPLIST_FILE = Read/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -442,7 +458,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = app.inuk.Read;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -456,10 +472,9 @@
 				CODE_SIGN_ENTITLEMENTS = Read/Read.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 2D7T23VV7R;
 				INFOPLIST_FILE = Read/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -467,7 +482,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = app.inuk.Read;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -493,7 +508,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -519,7 +534,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
