@@ -4,13 +4,6 @@ import WebKit
 
 final class WebViewWrapper: UIViewRepresentable
 {
-    func userContentController(
-        _ userContentController: WKUserContentController,
-        didReceive message: WKScriptMessage
-    ) {
-        print(message.name)
-    }
-    
     @ObservedObject
     var state: WebViewStateModel
     
