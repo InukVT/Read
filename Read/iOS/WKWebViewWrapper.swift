@@ -20,7 +20,7 @@ final class WebViewWrapper: UIViewRepresentable
         self.state = state
         let bundle = Bundle.main
         if let url = bundle.url(
-            forResource: "reader/index",
+            forResource: "Reader/reader/index",
             withExtension: "html")
         {
             request = URLRequest(url: url)
